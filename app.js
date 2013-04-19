@@ -18,7 +18,7 @@ app.configure(function(){
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use('/api', api.testApi);
+    app.use('/api/expense/listdata', api.expenseList);
     app.use(express.static(path.join(__dirname, 'app')));
 });
 

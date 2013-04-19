@@ -1,1 +1,16 @@
-<p>This is the expenselist view.</p>
+<table>
+    <thead>
+        <tr>
+            <td>Date</td>
+            <td>Location</td>
+            <td>Category</td>
+            <td>Amount</td>
+        </tr>
+    </thead>
+    <tr ng-repeat="expense in expenses">
+        <td>{{expense.dateTime}}</td>
+        <td>{{expense.location}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.amount}}</td>
+    </tr>
+</table>

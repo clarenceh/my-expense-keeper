@@ -3,9 +3,9 @@ Create DB
 
 Add a user
 - db.user.insert({_id: 'ho.clarence@gmail.com', password: 'maxell'})
-- db.user.update({_id: 'ho.clarence@gmail.com'}, {$set: {user_name: 'Clarence'}})
+- db.user.update({_id: 'ho.clarence@gmail.com'}, {$set: {userName: 'Clarence'}})
 - db.user.update({_id: 'ho.clarence@gmail.com'}, {$set: {categories: ['Eat', 'Cloth']}})
 
 Add an expense record
-- db.expense.insert({user_id: 'ho.clarence@gmail.com', date_time: new Date(), location: 'Diamond Hill', category: 'Eat', amount: 300})
-- db.expense.insert({user_id: 'ho.clarence@gmail.com', date_time: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650})
+- db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Eat', amount: 300})
+- db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650})
