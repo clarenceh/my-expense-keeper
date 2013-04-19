@@ -1,0 +1,16 @@
+Use yo to generate the application:
+- yo angular myExpenseKeeperApp
+
+Install angular-ui
+- bower install angular-ui
+
+Install Express
+- npm install express --save
+
+Install mongodb
+- npm install mongodb --save
+
+Create app.js in the root folder
+
+Update bootstrap to latest version (2.3.1)
+
