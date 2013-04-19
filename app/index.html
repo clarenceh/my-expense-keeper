@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
   </head>
-  <body ng-app="myExpenseKeeperAppApp">
+  <body ng-app="myExpenseKeeperApp">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -23,8 +23,30 @@
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <!-- Header -->
+    <header>
+        <hgroup>
+            <div class="appname"><h1>My Expense Keeper</h1></div>
+            <div class="username">Clarence</div>
+        </hgroup>
+    </header>
+
+    <!-- Navigation -->
+    <nav ng-controller="TopnavCtrl">
+        <input type="button" value="List" ng-click="list()">
+        <input type="button" value="Add">
+        <input type="button" value="Reports">
+        <input type="button" value="Settings">
+    </nav>
+
+    <section>
+        <!-- Add your site or application content here -->
+        <div class="container" ng-view></div>
+    </section>
+
+    <footer>
+        <h6>Copyright SkywideSoft 2013</h6>
+    </footer>
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
@@ -35,6 +57,8 @@
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/expenselist.js"></script>
+    <script src="scripts/controllers/topnav.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

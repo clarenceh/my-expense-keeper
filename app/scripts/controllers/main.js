@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myExpenseKeeperAppApp')
+angular.module('myExpenseKeeperApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

@@ -17,3 +17,12 @@ Update bootstrap to latest version (2.3.1)
 Share project on Github
 - account: clarenceh
 - repository name: my-expense-keeper
+
+Install latest version of yeoman
+- npm install git://github.com/yeoman/generator-angular.git
+
+Generate a route/controller/view for expense listing
+- yo angular:route expenselist
+
+Generate a top nav view controller
+- yo angular:controller topnav
