@@ -26,3 +26,24 @@ Generate a route/controller/view for expense listing
 
 Generate a top nav view controller
 - yo angular:controller topnav
+
+
+Issues:
+- Date time
+  - Cannot use ng-model to bind value for date time
+- Location
+  - Check using geolocation api to get the location in text
+- Category
+  - Retrieve from Restful-WS
+- Rating
+  - use stars
+
+i18n:
+- implement multiple languages
+
+security:
+- implement security and userid checking
+
+Deployment:
+- Test deploy to nodejitsu and mongohq (or mongolab)
+

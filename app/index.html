@@ -36,7 +36,7 @@
     <!-- Navigation -->
     <nav ng-controller="TopnavCtrl">
         <button class="btn btn-primary" type="button" ng-click="list()">List</button>
-        <button class="btn" type="button">Add</button>
+        <button class="btn" type="button" ng-click="add()">Add</button>
         <button class="btn" type="button">Reports</button>
         <button class="btn btn-info" type="button">Settings</button>
     </nav>
@@ -63,8 +63,9 @@
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/expenselist.js"></script>
     <script src="scripts/controllers/topnav.js"></script>
+    <script src="scripts/controllers/expenselist.js"></script>
+    <script src="scripts/controllers/expenseadd.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
