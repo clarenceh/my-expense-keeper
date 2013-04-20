@@ -18,7 +18,7 @@ Share project on Github
 - account: clarenceh
 - repository name: my-expense-keeper
 
-Install latest version of yeoman
+Install latest version of yeoman angularjs generator
 - npm install git://github.com/yeoman/generator-angular.git
 
 Generate a route/controller/view for expense listing
