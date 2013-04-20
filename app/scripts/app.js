@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myExpenseKeeperApp', [])
+angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -9,3 +9,4 @@ Add a user
 Add an expense record
 - db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Eat', amount: 300})
 - db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650})
+- db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Tsim Sha Tsui', category: 'Electronics', amount: 2500})

@@ -1,16 +1,20 @@
-<table>
+<div class=row-fluid>
+    <input type="search" class="input-medium search-query" placeholder="Enter filter text" ng-model="searchText"/>
+</div>
+<table class="table table-hover table-condensed">
+    <caption><h4>Expense Listing</h4></caption>
     <thead>
         <tr>
-            <td>Date</td>
-            <td>Location</td>
-            <td>Category</td>
-            <td>Amount</td>
+            <td><strong>Date</strong></td>
+            <td><strong>Location</strong></td>
+            <td><strong>Category</strong></td>
+            <td><strong>Amount</strong></td>
         </tr>
     </thead>
-    <tr ng-repeat="expense in expenses">
-        <td>{{expense.dateTime}}</td>
+    <tr ng-repeat="expense in expenses | filter: searchText">
+        <td>{{expense.dateTime | date:'yyyy-MM-dd HH:mm'}}</td>
         <td>{{expense.location}}</td>
         <td>{{expense.category}}</td>
-        <td>{{expense.amount}}</td>
+        <td>{{expense.amount | currency}}</td>
     </tr>
 </table>
