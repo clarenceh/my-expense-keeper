@@ -5,8 +5,8 @@
     <div class="control-group">
         <label class="control-label" for="date">Date and Time:</label>
         <div class="controls">
-            <input id="date" type="date" class="input-large" placeholder="Date" ng-model="expenseItem.date" required>
-            <input id="time" type="time" class="input-medium" placeholder="Time" ng-model="expenseItem.time" required>
+            <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
+            <input id="date" type="text" sky-date ng-model="$parent.expenseItem.dateTime" required>
         </div>
     </div>
 

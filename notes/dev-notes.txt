@@ -30,7 +30,7 @@ Generate a top nav view controller
 
 Issues:
 - Date time
-  - Cannot use ng-model to bind value for date time
+  - Add time selection (later enhancement)
 - Location
   - Check using geolocation api to get the location in text
 - Category

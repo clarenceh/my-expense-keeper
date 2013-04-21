@@ -10,8 +10,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="stylesheet" href="styles/main.css">
+    <!--<link rel="stylesheet" href="components/jquery-ui/themes/base/jquery.ui.css">-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body ng-app="myExpenseKeeperApp">
     <!--[if lt IE 7]>
@@ -53,6 +55,8 @@
         <p class="text-center"><small>Copyright &copy; SkywideSoft 2013</small></p>
     </footer>
 
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
@@ -66,6 +70,7 @@
     <script src="scripts/controllers/topnav.js"></script>
     <script src="scripts/controllers/expenselist.js"></script>
     <script src="scripts/controllers/expenseadd.js"></script>
+    <script src="scripts/directives/skydate.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

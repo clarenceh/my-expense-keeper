@@ -9,11 +9,6 @@ angular.module('myExpenseKeeperApp')
 
         var expenseItem = $scope.expenseItem;
         expenseItem.dateTime = new Date();
-        expenseItem.date = new Date();
-        expenseItem.dateString = '01/04/2013';
-        expenseItem.time = new Date();
-
-        $log.info('In add expense form with date: ' + $scope.expenseItem.date);
 
         //Check if browser supports W3C Geolocation API
         if (navigator.geolocation) {
@@ -32,9 +27,6 @@ angular.module('myExpenseKeeperApp')
         }
 
         $scope.save = function() {
-            $log.info("Date: " + expenseItem.date);
-            $log.info(typeof expenseItem.date);
-            $log.info("Time: " + expenseItem.time);
-            $log.info(typeof expenseItem.time);
+            $log.info("Date: " + expenseItem.dateTime);
         }
     });
