@@ -1,0 +1,53 @@
+<p class="text-center">{{action}} Expense Item</p>
+
+<form class="form-horizontal">
+
+    <div class="control-group">
+        <label class="control-label">Date:</label>
+        <div class="controls">
+            <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
+            <span class="uneditable-input">{{expenseItem.dateTime | date:'yyyy-MM-dd'}}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">Location:</label>
+        <div class="controls">
+            <span class="uneditable-input">{{expenseItem.location}}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">Category:</label>
+        <div class="controls">
+            <span class="uneditable-input">{{expenseItem.category}}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">Amount:</label>
+        <div class="controls">
+            <span class="uneditable-input">{{expenseItem.amount | currency}}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">Description:</label>
+        <div class="controls">
+            <span class="uneditable-input">{{expenseItem.description}}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">Rating:</label>
+        <div class="controls">
+            <span class="uneditable-input">{{expenseItem.rating}}</span>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary" ng-click="edit()">Edit</button>
+        <button type="submit" class="btn btn-inverse" ng-click="delete()">Delete</button>
+        <button type="button" class="btn" ng-click="back()">Back</button>
+    </div>
+</form>

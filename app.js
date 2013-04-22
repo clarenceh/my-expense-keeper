@@ -19,6 +19,10 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use('/api/expense/listdata', api.expenseList);
+    app.post('/api/expense', api.expenseAdd);
+    app.get('/api/expense/:id', api.expenseGet);
+    app.put('/api/expense/:id', api.expenseSave);
+    app.delete('/api/expense/:id', api.expenseRemove);
     app.use(express.static(path.join(__dirname, 'app')));
 });
 

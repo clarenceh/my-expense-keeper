@@ -12,4 +12,5 @@ angular.module('myExpenseKeeperApp')
         $log.info('Response data: ' + data);
         $scope.expenses = data;
     });
+
   });

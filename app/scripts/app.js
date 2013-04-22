@@ -15,6 +15,14 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
         templateUrl: 'views/expenseform.html',
         controller: 'ExpenseaddCtrl'
       })
+      .when('/expenseview/:id', {
+        templateUrl: 'views/expenseview.html',
+        controller: 'ExpenseviewCtrl'
+      })
+      .when('/expenseedit/:id', {
+        templateUrl: 'views/expenseform.html',
+        controller: 'ExpenseeditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

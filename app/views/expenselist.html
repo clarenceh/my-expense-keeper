@@ -11,8 +11,8 @@
             <td><strong>Amount</strong></td>
         </tr>
     </thead>
-    <tr ng-repeat="expense in expenses | filter: searchText">
-        <td>{{expense.dateTime | date:'yyyy-MM-dd HH:mm'}}</td>
+    <tr ng-repeat="expense in expenses | filter: searchText | orderBy:'dateTime':true ">
+        <td><a href="#/expenseview/{{expense._id}}">{{expense.dateTime | date:'yyyy-MM-dd'}}</a></td>
         <td>{{expense.location}}</td>
         <td>{{expense.category}}</td>
         <td>{{expense.amount | currency}}</td>

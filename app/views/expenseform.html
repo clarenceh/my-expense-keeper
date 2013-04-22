@@ -3,7 +3,7 @@
 <form class="form-horizontal">
 
     <div class="control-group">
-        <label class="control-label" for="date">Date and Time:</label>
+        <label class="control-label" for="date">Date:</label>
         <div class="controls">
             <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
             <input id="date" type="text" sky-date ng-model="$parent.expenseItem.dateTime" required>
@@ -47,6 +47,6 @@
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary" ng-click="save()">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
+        <button type="button" class="btn" ng-click="cancel()">Cancel</button>
     </div>
 </form>

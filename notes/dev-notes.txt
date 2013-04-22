@@ -28,6 +28,10 @@ Generate a top nav view controller
 - yo angular:controller topnav
 
 
+Todo:
+- Add/Edit: add successful message in view
+- Delete: add confirmation dialog, add successful message
+
 Issues:
 - Date time
   - Add time selection (later enhancement)
