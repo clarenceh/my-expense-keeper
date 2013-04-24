@@ -31,6 +31,10 @@ Generate a top nav view controller
 Todo:
 - Add/Edit: add successful message in view
 - Delete: add confirmation dialog, add successful message
+- Use icon-font for buttons and rating images, etc.
+- Re-factor expense http requests into an AngularJS service
+- develop a directive for rating???
+- add responsive design
 
 Issues:
 - Date time
