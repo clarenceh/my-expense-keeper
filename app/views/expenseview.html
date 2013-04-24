@@ -1,3 +1,7 @@
+<div ng-show="displayMessage">
+    <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">{{message.text}}</alert>
+</div>
+
 <p class="text-center">{{action}} Expense Item</p>
 
 <form class="form-horizontal">

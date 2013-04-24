@@ -29,8 +29,15 @@ Generate a top nav view controller
 
 
 Todo:
-- Add/Edit: add successful message in view
-- Delete: add confirmation dialog, add successful message
+- Refactor header into a top nav bar
+- Category
+  - change to select list
+- Home Page
+  - add registration, sign in
+  - sign in to store user information in local storage???
+- Refactor header
+  - add logout
+- Change expense functions to retrieve for the user only
 - Use icon-font for buttons and rating images, etc.
 - Re-factor expense http requests into an AngularJS service
 - develop a directive for rating???

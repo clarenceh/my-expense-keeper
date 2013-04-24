@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseviewCtrl', function ($scope, $http, $routeParams, $log, $location, $dialog) {
+  .controller('ExpenseviewCtrl', function ($scope, $http, $routeParams, $log, $location, $dialog, messageService) {
+
+        $log.info(messageService.getMessages().length);
+
+        $scope.displayMessage = messageService.containsMessage();
+        if ($scope.displayMessage) {
+            $scope.messages = messageService.getMessages();
+        }
 
         $scope.action = 'View';
 
@@ -16,6 +23,7 @@ angular.module('myExpenseKeeperApp')
         });
 
         $scope.edit = function() {
+            messageService.clearMessages();
             // Redirect to edit view
             $location.path('/expenseedit/' + expenseId);
         }
@@ -37,9 +45,20 @@ angular.module('myExpenseKeeperApp')
         $scope.delete = function() {
             $log.info('Deleting expense');
 
+            messageService.clearMessages();
+
             // Submit request to server
             $http.delete('/api/expense/' + expenseId).success(function(data, status) {
                 $log.info('Delete expense success!');
+
+                var title = 'Confirmation Message';
+                var msg = 'Expense item deleted successfully';
+                var btns = [{result:'ok', label: 'OK', cssClass: 'btn-success'}];
+
+                $dialog.messageBox(title, msg, btns)
+                    .open()
+                    .then(function(result){
+                    });
 
                 // Redirect to list page
                 $location.path('/expenselist').replace();
@@ -49,6 +68,7 @@ angular.module('myExpenseKeeperApp')
         }
 
         $scope.back = function() {
+            messageService.clearMessages();
             // Redirect to list page
             $location.path('/expenselist');
         }

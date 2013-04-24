@@ -28,19 +28,23 @@
     <!-- Header -->
     <header>
         <hgroup>
-            <div class="row-fluid">
-                <div class="span4 appname"><h4>My Expense Keeper</h4></div>
-                <div class="span2 offset6 username">Clarence</div>
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span4 appname"><h4><a href="/">My Expense Keeper</a></h4></div>
+                    <div class="span2 offset6 username">Clarence</div>
+                </div>
             </div>
         </hgroup>
     </header>
 
     <!-- Navigation -->
     <nav ng-controller="TopnavCtrl">
-        <button class="btn btn-primary" type="button" ng-click="list()">List</button>
-        <button class="btn" type="button" ng-click="add()">Add</button>
-        <button class="btn btn-success" type="button">Reports</button>
-        <button class="btn btn-info" type="button">Settings</button>
+        <div class="container">
+            <button class="btn btn-primary" type="button" ng-click="list()">List</button>
+            <button class="btn" type="button" ng-click="add()">Add</button>
+            <button class="btn btn-success" type="button">Reports</button>
+            <button class="btn btn-info" type="button">Settings</button>
+        </div>
     </nav>
 
     <hr>
@@ -51,8 +55,10 @@
     </section>
 
     <footer>
-        <hr>
-        <p class="text-center muted"><small>Copyright &copy; SkywideSoft 2013</small></p>
+        <div class="container">
+            <hr>
+            <p class="text-center muted"><small>Copyright &copy; SkywideSoft 2013</small></p>
+        </div>
     </footer>
 
     <script src="components/jquery/jquery.js"></script>
@@ -73,6 +79,7 @@
     <script src="scripts/directives/skydate.js"></script>
     <script src="scripts/controllers/expenseview.js"></script>
     <script src="scripts/controllers/expenseedit.js"></script>
+    <script src="scripts/services/messageservice.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

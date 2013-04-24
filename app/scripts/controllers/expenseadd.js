@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter) {
+  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter, messageService) {
 
         $scope.action = 'Add';
 
@@ -40,10 +40,17 @@ angular.module('myExpenseKeeperApp')
             $http.post('/api/expense', expenseItem).success(function(data, status) {
                 $log.info('Add expense success!');
 
+                // Add message via messageService for display
+                messageService.addMessage({type: 'success', text: 'Expense item saved successfully'});
+
                 // Redirect to view page
                 $location.path('/expenseview/' + data._id);
             }).error(function(data, status) {
                 $log.info('Add expense fail: ' + status);
             });
+        }
+
+        $scope.cancel = function() {
+            window.history.back();
         }
     });
