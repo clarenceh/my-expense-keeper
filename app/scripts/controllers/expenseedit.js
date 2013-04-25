@@ -1,12 +1,20 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, messageService) {
+  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, messageService, categoryService) {
 
         $scope.action = 'Edit';
 
         var expenseId = $routeParams.id;
         var expenseItem = {};
+
+        // TODO: retrieve from logged in user
+        $scope.userId = 'ho.clarence@gmail.com';
+
+        // Drop down list box for categories
+        categoryService.findCategoriesByUser($scope.userId, function(categories) {
+            $scope.categories = categories;
+        });
 
         // Submit request to server
         $http.get('/api/expense/' + expenseId).success(function(data, status) {

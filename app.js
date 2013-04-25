@@ -23,6 +23,7 @@ app.configure(function(){
     app.get('/api/expense/:id', api.expenseGet);
     app.put('/api/expense/:id', api.expenseSave);
     app.delete('/api/expense/:id', api.expenseRemove);
+    app.get('/api/user/:id', api.userGet);
     app.use(express.static(path.join(__dirname, 'app')));
 });
 

@@ -14,6 +14,7 @@ var mongodb = require('mongodb')
     , server = new mongodb.Server('127.0.0.1', 27017, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
+var users;
 
 //Open a MongoDB connection
 client.open(function(err) {
@@ -22,6 +23,11 @@ client.open(function(err) {
         if (err) throw err;
         console.log('We are now able to perform queries on expenses.');
         expenses = collection;
+    });
+    client.collection('user', function(err, collection) {
+        if (err) throw err;
+        console.log('We are now able to perform queries on expenses.');
+        users = collection;
     });
 });
 
@@ -151,10 +157,28 @@ function expenseRemove(req, res, next) {
 
 }
 
+function userGet(req, res, next) {
+
+    // Retrieve the id
+    var userId = req.params.id;
+    console.log('Getting user with id: ' + userId);
+
+    // Return the user document (exclusde password)
+    users.findOne({_id: userId}, {password: 0},
+        function(err, document) {
+            if (err) throw err;
+            console.log('Retrieved user: ' + document);
+            res.send(document);
+        }
+    );
+
+}
+
 exports.testApi = testApi;
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
 exports.expenseGet = expenseGet;
 exports.expenseSave = expenseSave;
 exports.expenseRemove = expenseRemove;
+exports.userGet = userGet;
 

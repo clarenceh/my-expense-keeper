@@ -21,7 +21,14 @@
     <div class="control-group">
         <label class="control-label" for="category">*Category:</label>
         <div class="controls">
-            <input id="category" name="category" type="text" class="input-medium" placeholder="Category" ng-model="expenseItem.category" required>
+           <!-- <input id="category" name="category" type="text" class="input-medium" placeholder="Category" ng-model="expenseItem.category" required>-->
+            <select ui-select2 id="category" name="category" required
+                    ng-model="expenseItem.category"
+                    data-placeholder="-- Select One --">
+                <option></option>
+                <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+            </select>
+            <a class="btn btn-small" href="#"><i class="icon-plus"></i></a>
         </div>
     </div>
 
