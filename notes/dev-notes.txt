@@ -29,21 +29,24 @@ Generate a top nav view controller
 
 
 Todo:
-- Refactor header into a top nav bar
+- Implement form validation
 - Category
-  - change to select list
+  - change to select list (create a category service)
 - Home Page
-  - add registration, sign in
   - sign in to store user information in local storage???
-- Refactor header
-  - add logout
 - Change expense functions to retrieve for the user only
 - Use icon-font for buttons and rating images, etc.
 - Re-factor expense http requests into an AngularJS service
 - develop a directive for rating???
 - add responsive design
+- setting modal dialog
+  - select language
+  - logout
+  - ...
 
 Issues:
+- Validation
+  - how to display the form element validation message???
 - Date time
   - Add time selection (later enhancement)
 - Location
@@ -52,6 +55,8 @@ Issues:
   - Retrieve from Restful-WS
 - Rating
   - use stars
+- Reponsive design
+  - the drop down for collapse menu not working
 
 i18n:
 - implement multiple languages

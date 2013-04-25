@@ -1,3 +1,18 @@
 @import url('bootstrap.css');
 
 @import url('bootstrap-responsive.css');
+
+body {
+    padding-top: 5em;
+}
+
+.c-cta {
+    margin: 2em, 0;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+}
+

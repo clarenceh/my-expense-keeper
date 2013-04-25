@@ -1,52 +1,54 @@
-<p class="text-center">{{action}} Expense Item</p>
+<p><h4 class="text-center">{{action}} Expense Item</h4></p>
 
-<form class="form-horizontal">
+<form name="form" novalidate class="form-horizontal">
 
     <div class="control-group">
-        <label class="control-label" for="date">Date:</label>
+        <label class="control-label" for="dateTime">*Date:</label>
         <div class="controls">
             <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
-            <input id="date" type="text" sky-date ng-model="$parent.expenseItem.dateTime" required>
+            <input id="dateTime" name="dateTime" type="text" sky-date ng-model="$parent.expenseItem.dateTime" required>
+            <span class="help-inline"><small class="muted">YYYY-MM-DD</small></span>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="location">Location:</label>
+        <label class="control-label" for="location">*Location:</label>
         <div class="controls">
-            <input id="location" type="text" placeholder="Location" ng-model="expenseItem.location" required>
+            <input id="location" name="location" type="text" placeholder="Location" ng-model="expenseItem.location" required>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="category">Category:</label>
+        <label class="control-label" for="category">*Category:</label>
         <div class="controls">
-            <input id="category" type="text" class="input-medium" placeholder="Category" ng-model="expenseItem.category" required>
+            <input id="category" name="category" type="text" class="input-medium" placeholder="Category" ng-model="expenseItem.category" required>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="amount">Amount:</label>
+        <label class="control-label" for="amount">*Amount:</label>
         <div class="controls">
-            <input id="amount" type="number" min="0" class="input-small" placeholder="Amount" ng-model="expenseItem.amount" required>
+            <input id="amount" name="amount" type="number" min="0" class="input-small" placeholder="Amount" ng-model="expenseItem.amount" required>
         </div>
     </div>
 
     <div class="control-group">
         <label class="control-label" for="description">Description:</label>
         <div class="controls">
-            <input id="description" type="text" class="input-xlarge" placeholder="Description" ng-model="expenseItem.description">
+            <input id="description" name="description" type="text" class="input-xlarge" placeholder="Description" ng-model="expenseItem.description">
         </div>
     </div>
 
     <div class="control-group">
         <label class="control-label" for="rating">Rating:</label>
         <div class="controls">
-            <input id="rating" type="number" min="1" max="5" class="input-mini" placeholder="Rating" ng-model="expenseItem.rating">
+            <input id="rating" name="rating" type="number" min="1" max="5" class="input-mini" placeholder="Rating" ng-model="expenseItem.rating">
         </div>
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary" ng-click="save()">Save changes</button>
+        <button type="submit" class="btn btn-primary" ng-click="save()"
+                ng-disabled="form.$invalid">Save changes</button>
         <button type="button" class="btn" ng-click="cancel()">Cancel</button>
     </div>
 </form>

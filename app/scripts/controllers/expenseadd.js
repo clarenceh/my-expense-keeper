@@ -51,6 +51,6 @@ angular.module('myExpenseKeeperApp')
         }
 
         $scope.cancel = function() {
-            window.history.back();
+            $location.path('/expenselist');
         }
     });
