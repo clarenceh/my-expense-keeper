@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: messageservice', function () {
+describe('Service: messageService', function () {
 
   // load the service's module
   beforeEach(module('myExpenseKeeperApp'));

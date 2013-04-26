@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter, messageService, categoryService) {
+  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter, flashMessage, categoryService) {
 
         $scope.action = 'Add';
 
@@ -17,7 +17,7 @@ angular.module('myExpenseKeeperApp')
 
         var expenseItem = $scope.expenseItem;
 
-        // Should be dynamic to the current login user
+        // TODO: Should be dynamic to the current login user
         expenseItem.userId = 'ho.clarence@gmail.com';
 
         //expenseItem.dateTime = new Date();
@@ -49,7 +49,7 @@ angular.module('myExpenseKeeperApp')
                 $log.info('Add expense success!');
 
                 // Add message via messageService for display
-                messageService.addMessage({type: 'success', text: 'Expense item saved successfully'});
+                flashMessage.set({type: 'success', text: 'Expense item saved successfully'});
 
                 // Redirect to view page
                 $location.path('/expenseview/' + data._id);

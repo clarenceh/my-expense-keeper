@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: categoryservice', function () {
+describe('Service: categoryService', function () {
 
   // load the service's module
   beforeEach(module('myExpenseKeeperApp'));

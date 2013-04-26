@@ -1,6 +1,5 @@
-<div ng-show="displayMessage">
-    <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">{{message.text}}</alert>
-</div>
+<div class="alert" ng-show="flash.get().text.length">{{flash.get().text}}</div>
+<!--<alert ng-show="flash.get()" type="flash.get().type" close="closeAlert()">{{flash.get().text}}</alert>-->
 
 <p><h4 class="text-center">{{action}} Expense Item</h4></p>
 
