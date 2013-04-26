@@ -47,6 +47,10 @@ function testApi(req, res, next) {
 
 function expenseList(req, res, next) {
 
+    if (req.user) {
+        console.log('In expense list for user: ' + req.user.id);
+    }
+
     switch (req.method) {
 
         case 'GET':
@@ -174,6 +178,19 @@ function userGet(req, res, next) {
 
 }
 
+function findUserById(userId, callback) {
+
+    // Return the user document (exclusde password)
+    users.findOne({_id: userId},
+        function(err, document) {
+            if (err) throw err;
+            //console.log('Retrieved user: ' + document);
+            callback(document);
+        }
+    );
+
+}
+
 exports.testApi = testApi;
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
@@ -181,4 +198,5 @@ exports.expenseGet = expenseGet;
 exports.expenseSave = expenseSave;
 exports.expenseRemove = expenseRemove;
 exports.userGet = userGet;
+exports.findUserById = findUserById;
 

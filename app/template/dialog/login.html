@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h1>Login</h1>
+</div>
+
+<div class="modal-body">
+    <form name="loginForm" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls">
+                <input type="email" id="inputEmail" name="username" ng-model="user.username" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">Password</label>
+            <div class="controls">
+                <input type="password" id="inputPassword" name="password" ng-model="user.password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" ng-click="login()" ng-disabled="loginForm.$invalid">Sign in</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button ng-click="close()" class="btn" >Cancel</button>
+</div>';

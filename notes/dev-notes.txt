@@ -2,7 +2,7 @@ Use yo to generate the application:
 - yo angular myExpenseKeeperApp
 
 Install angular-ui
-- bower install angular-ui
+- bower install angular-ui --save
 
 Install Express
 - npm install express --save
@@ -29,12 +29,20 @@ Generate a top nav view controller
 
 
 Todo:
+- Security
+  - hash user password
+  - implement registration function
 - Implement form validation
 - Category
   - change to select list (create a category service)
 - Home Page
   - sign in to store user information in local storage???
+- Navigation bar
+  - Change class to active for the current view
 - Change expense functions to retrieve for the user only
+- Expense list
+  - implement pagination
+  - use infinite scroll???
 - Use icon-font for buttons and rating images, etc.
 - Re-factor expense http requests into an AngularJS service
 - develop a directive for rating???
