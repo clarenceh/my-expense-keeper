@@ -10,7 +10,8 @@
 //    {userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650}
 //];
 
-var mongodb = require('mongodb')
+var bcrypt = require('bcrypt')
+    , mongodb = require('mongodb')
     , server = new mongodb.Server('127.0.0.1', 27017, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
@@ -191,6 +192,66 @@ function findUserById(userId, callback) {
 
 }
 
+function userAdd(req, res, next) {
+
+    var newUser = req.body;
+
+    console.log('Adding user: ', newUser.username + ':' + newUser.password + ' name: ' + newUser.name);
+
+    // Hash the password
+    var salt = bcrypt.genSaltSync(10);
+    var hashPassword = bcrypt.hashSync(newUser.password, salt);
+
+    var user = {
+        _id: newUser.username,
+        password: hashPassword,
+        userName: newUser.name
+    };
+
+    // Add user to DB
+    users.insert(
+        user,
+        {safe: true},
+        function(err, documents) {
+            if (err) throw err;
+            console.log('User: ' + newUser.username + ' registered successfully');
+            res.send(200);
+        }
+    );
+
+}
+
+function validPassword(userPassword, submittedPassword) {
+
+    console.log('Hashed password: ' + userPassword + ' submitted password: ' + submittedPassword);
+    console.log('Compare result: ' + bcrypt.compareSync(submittedPassword, userPassword));
+
+    return bcrypt.compareSync(submittedPassword, userPassword);
+
+}
+
+function addCategoryForUser(req, res, next) {
+
+    var user = req.user;
+
+    var category = req.body;
+
+    console.log('Add category: ' + category.category + ' for user: ' + user.id);
+
+    // Save category to DB
+    users.update(
+        {_id: user.id},
+        {$addToSet: {categories: category.category}},
+        {safe: true},
+        function(err, document) {
+            if (err) throw err;
+            console.log('Category saved successfully');
+            res.send(200);
+        }
+    );
+
+}
+
 exports.testApi = testApi;
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
@@ -199,4 +260,7 @@ exports.expenseSave = expenseSave;
 exports.expenseRemove = expenseRemove;
 exports.userGet = userGet;
 exports.findUserById = findUserById;
+exports.userAdd = userAdd;
+exports.validPassword = validPassword;
+exports.addCategoryForUser = addCategoryForUser;
 

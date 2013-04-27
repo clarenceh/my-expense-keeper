@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, flashMessage, categoryService) {
+  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, $dialog, flashMessage, categoryService) {
 
         $scope.action = 'Edit';
 
@@ -13,7 +13,11 @@ angular.module('myExpenseKeeperApp')
 
         // Drop down list box for categories
         categoryService.findCategoriesByUser($scope.userId, function(categories) {
-            $scope.categories = categories;
+            if (!!categories) {
+                $scope.categories = categories;
+            } else {
+                $scope.categories = [];
+            }
         });
 
         // Submit request to server
@@ -49,5 +53,15 @@ angular.module('myExpenseKeeperApp')
         $scope.cancel = function() {
             window.history.back();
         }
+
+        $scope.addCategory = function(category) {
+            var d = $dialog.dialog({dialogFade: true, resolve: {category: function(){ return angular.copy(category); }} });
+            d.open('template/dialog/add-category.html', 'UserCtrl')
+                .then(function(result) {
+                    console.log('In add expense - category: ' + result);
+                    $scope.categories.push(result);
+                    expenseItem.category = result;
+                });
+        };
 
   });

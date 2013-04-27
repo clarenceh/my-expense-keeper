@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h1>Add Category</h1>
+</div>
+
+<div class="modal-body">
+    <form name="addCategoryForm" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="category">Category</label>
+            <div class="controls">
+                <input type="text" id="category" pattern=".{3,20}" name="category" ng-model="category" placeholder="Category" required>
+                <span class="help-inline"><small class="muted">3 to 20 characters</small></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" ng-click="addCategory()" ng-disabled="addCategoryForm.$invalid">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button ng-click="close()" class="btn" >Cancel</button>
+</div>';

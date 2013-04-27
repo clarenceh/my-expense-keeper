@@ -10,3 +10,6 @@ Add an expense record
 - db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date('2013-04-01'), location: 'Diamond Hill', category: 'Eat', amount: 300})
 - db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date('2013-04-05'), location: 'Diamond Hill', category: 'Cloth', amount: 650})
 - db.expense.insert({userId: 'ho.clarence@gmail.com', dateTime: new Date('2013-04-10'), location: 'Tsim Sha Tsui', category: 'Electronics', amount: 2500})
+
+Remove categories from user:
+- db.user.update({_id: 'ho.clarence@gmail.com'}, {$unset: {categories: 1}})

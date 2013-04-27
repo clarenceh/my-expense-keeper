@@ -8,4 +8,9 @@ angular.module('myExpenseKeeperApp')
         d.open('template/dialog/login.html', 'SecurityCtrl');
     };
 
+    $scope.register = function(user) {
+        var d = $dialog.dialog({dialogFade: true, resolve: {user: function(){ return angular.copy(user); }} });
+        d.open('template/dialog/register.html', 'SecurityCtrl');
+    };
+
   });

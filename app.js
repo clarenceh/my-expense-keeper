@@ -52,7 +52,7 @@ passport.use(new LocalStrategy(
             }
 
             // Password in-correct
-            if (user.password !== password) {
+            if (!api.validPassword(user.password, password)) {
                 console.log('In-correct password');
                 return done(null, false, { message: 'Incorrect password.' });
             }
@@ -99,12 +99,7 @@ app.configure(function(){
     app.put('/api/expense/:id', api.expenseSave);
     app.delete('/api/expense/:id', api.expenseRemove);
     app.get('/api/user/:id', api.userGet);
-/*    app.post('/login',
-        passport.authenticate('local', { failureRedirect: '#/', failureFlash: false }),
-        function(req, res) {
-            console.log("Auth success");
-            res.send(200);
-        });*/
+    app.post('/api/category', api.addCategoryForUser);
     app.post('/login', function(req, res, next) {
         passport.authenticate('local', function(err, user, info) {
             if (err) {
@@ -119,7 +114,7 @@ app.configure(function(){
             });
         })(req, res, next);
     });
-
+    app.post('/register', api.userAdd);
     app.use(express.static(path.join(__dirname, 'app')));
 });
 

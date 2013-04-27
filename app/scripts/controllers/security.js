@@ -22,4 +22,17 @@ angular.module('myExpenseKeeperApp')
             dialog.close();
         };
 
+        // Register
+        $scope.register = function() {
+            console.log("Username: " + $scope.user.username + " password: " + $scope.user.password);
+
+            // Register user with server
+            $http.post('/register/', $scope.user).success(function(data, status) {
+                console.log("Register result: " + data);
+                dialog.close();
+            }).error(function(data, status) {
+                console.log('Register failed: ' + status);
+            });
+        }
+
   });

@@ -29,6 +29,9 @@ Generate a top nav view controller
 
 
 Todo:
+- Categories
+  - Set width of select2 control
+  - Set the value of the category after add success
 - Security
   - hash user password
   - implement registration function
