@@ -1,3 +1,6 @@
+Install yo, grunt and bower
+- npm install yo grunt-cli bower -g
+
 Use yo to generate the application:
 - yo angular myExpenseKeeperApp
 
@@ -29,15 +32,10 @@ Generate a top nav view controller
 
 
 Todo:
-- Categories
-  - Set width of select2 control
-  - Set the value of the category after add success
 - Security
   - hash user password
   - implement registration function
 - Implement form validation
-- Category
-  - change to select list (create a category service)
 - Home Page
   - sign in to store user information in local storage???
 - Navigation bar
@@ -56,6 +54,8 @@ Todo:
   - ...
 
 Issues:
+- Category
+  - When add an item, the select2 ui control's value not updated after update the model
 - Validation
   - how to display the form element validation message???
 - Date time
