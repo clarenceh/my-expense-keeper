@@ -10,7 +10,7 @@
 //    {userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650}
 //];
 
-var bcrypt = require('bcrypt')
+var bcrypt = require('dojo-bcrypt')
     , mongodb = require('mongodb')
     , server = new mongodb.Server('127.0.0.1', 27017, {});
 var client = new mongodb.Db('myexpensekeeper', server);
