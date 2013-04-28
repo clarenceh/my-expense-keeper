@@ -5,8 +5,7 @@
  * Time: 11:23
  */
 
-var flash = require('connect-flash')
-    , express = require('express')
+var express = require('express')
     , http = require('http')
     , path = require('path')
     , passport = require('passport')
@@ -90,7 +89,6 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.session({ secret: 'keyboard cat' }));
-    app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
     app.get('/api/expense/listdata', api.expenseList);
