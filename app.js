@@ -98,6 +98,7 @@ app.configure(function(){
     app.delete('/api/expense/:id', api.expenseRemove);
     app.get('/api/user/:id', api.userGet);
     app.post('/api/category', api.addCategoryForUser);
+    app.get('/checkuser/:id', api.checkUserId);
     app.post('/login', function(req, res, next) {
         passport.authenticate('local', function(err, user, info) {
             if (err) {

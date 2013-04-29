@@ -227,7 +227,10 @@ function userAdd(req, res, next) {
         user,
         {safe: true},
         function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                console.log('Error in adding user to DB: ' + err);
+                res.send(500);
+            };
             console.log('User: ' + newUser.username + ' registered successfully');
             res.send(200);
         }
@@ -270,6 +273,28 @@ function addCategoryForUser(req, res, next) {
 
 }
 
+function checkUserId(req, res, next) {
+
+    // Retrieve the id
+    var userId = req.params.id;
+
+    console.log('Checking existing user with id: ' + userId);
+
+    // Return the user document (exclusde password)
+    users.findOne({_id: userId}, {password: 0},
+        function(err, document) {
+            if (err) throw err;
+            console.log('User id exist ' + document);
+            if (!!document) {
+                res.send(404);
+            } else {
+                res.send(200);
+            }
+        }
+    );
+
+}
+
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
 exports.expenseGet = expenseGet;
@@ -280,4 +305,4 @@ exports.findUserById = findUserById;
 exports.userAdd = userAdd;
 exports.validPassword = validPassword;
 exports.addCategoryForUser = addCategoryForUser;
-
+exports.checkUserId = checkUserId;

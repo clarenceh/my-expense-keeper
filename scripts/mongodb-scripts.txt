@@ -13,3 +13,6 @@ Add an expense record
 
 Remove categories from user:
 - db.user.update({_id: 'ho.clarence@gmail.com'}, {$unset: {categories: 1}})
+
+List all user ids:
+- db.user.find({}, {_id: 1})

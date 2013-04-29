@@ -5,6 +5,8 @@ angular.module('myExpenseKeeperApp')
 
         $scope.user = user;
 
+        $scope.actionFailed = false;
+
         // Login
         $scope.login = function() {
             console.log("Username: " + $scope.user.username + " password: " + $scope.user.password);
@@ -16,24 +18,12 @@ angular.module('myExpenseKeeperApp')
                 dialog.close();
             }).error(function(data, status) {
                 console.log('Login failed: ' + status);
+                $scope.actionFailed = true;
             });
         }
 
         $scope.close = function(){
             dialog.close();
         };
-
-        // Register
-        $scope.register = function() {
-            console.log("Username: " + $scope.user.username + " password: " + $scope.user.password);
-
-            // Register user with server
-            $http.post('/register/', $scope.user).success(function(data, status) {
-                console.log("Register result: " + data);
-                dialog.close();
-            }).error(function(data, status) {
-                console.log('Register failed: ' + status);
-            });
-        }
 
   });

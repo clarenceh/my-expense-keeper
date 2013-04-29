@@ -32,8 +32,6 @@ Generate a top nav view controller
 
 
 Todo:
-- Registration
-  - reject if email exist
 - Implement form validation
 - Navigation bar
   - Change class to active for the current view
