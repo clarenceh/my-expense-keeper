@@ -24,11 +24,15 @@ angular.module('myExpenseKeeperApp')
                     console.log("Register result: " + data);
                     dialog.close();
                 }).error(function(data, status) {
-                        console.log('Register failed: ' + status);
-                        $scope.actionFailed = true;
+                    console.log('Register failed: ' + status);
+                    $scope.actionFailed = true;
                 });
 
                 console.log("Register result: " + data);
+
+                // Save log in information
+                userService.saveUserInfo($scope.user.username);
+
                 dialog.close();
             }).error(function(data, status) {
                 console.log('Register failed: ' + status);

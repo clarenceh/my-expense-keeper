@@ -22,7 +22,9 @@ angular.module('myExpenseKeeperApp')
 
     $scope.register = function(user) {
         var d = $dialog.dialog({dialogFade: true, resolve: {user: function(){ return angular.copy(user); }} });
-        d.open('template/dialog/register.html', 'RegisterCtrl');
+        d.open('template/dialog/register.html', 'RegisterCtrl').then(function(result) {
+            $window.location.reload();
+        });
     };
 
   });

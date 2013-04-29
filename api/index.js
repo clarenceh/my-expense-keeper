@@ -12,6 +12,8 @@
 
 var bcrypt = require('dojo-bcrypt')
     , mongodb = require('mongodb')
+    , passport = require('passport')
+    , LocalStrategy = require('passport-local').Strategy
     , server = new mongodb.Server('127.0.0.1', 27017, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
@@ -232,7 +234,21 @@ function userAdd(req, res, next) {
                 res.send(500);
             };
             console.log('User: ' + newUser.username + ' registered successfully');
-            res.send(200);
+
+            // Login user
+            console.log("Logging in user: " + newUser.username);
+            passport.authenticate('local', function(err, user, info) {
+                if (err) {
+                    return next(err);
+                }
+                if (!user) {
+                    return res.send(401);
+                }
+                req.logIn(user, function(err) {
+                    if (err) { return next(err); }
+                    res.send(200);
+                });
+            })(req, res, next);
         }
     );
 
