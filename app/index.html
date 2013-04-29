@@ -50,7 +50,7 @@
 
     <header>
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
+            <div class="navbar-inner" ng-controller="TopnavCtrl">
                 <div class="container">
                     <a href="/" class="brand">My Expense Keeper</a>
 
@@ -63,10 +63,10 @@
                     <div class="collapse nav-collapse">
                         <ul class="nav pull-right">
                             <li class="active"><a href="/">Home</a></li>
-                            <li><a href="#/expenselist">List</a></li>
-                            <li><a href="#/expenseadd">Add</a></li>
-                            <li><a href="/">Report</a></li>
-                            <li><a href="" data-toggle="modal" data-target="#modal-settings-form">Settings</a></li>
+                            <li><a href="#/expenselist" ng-show="isLoggedIn">List</a></li>
+                            <li><a href="#/expenseadd" ng-show="isLoggedIn">Add</a></li>
+                            <li><a href="/" ng-show="isLoggedIn">Report</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#modal-settings-form" ng-show="isLoggedIn">Settings</a></li>
                         </ul>
                     </div>
                 </div>

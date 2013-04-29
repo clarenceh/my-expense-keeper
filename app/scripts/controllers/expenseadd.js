@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter, $dialog, flashMessage, categoryService) {
+  .controller('ExpenseaddCtrl', function ($scope, $http, $log, $location, $filter, $dialog, flashMessage, categoryService, userService) {
 
         $scope.action = 'Add';
 
-        // TODO: retrieve from logged in user
-        $scope.userId = 'ho.clarence@gmail.com';
+        $scope.userId = userService.isLoggedIn();
 
         $scope.expenseItem = {};
 
@@ -21,8 +20,7 @@ angular.module('myExpenseKeeperApp')
 
         var expenseItem = $scope.expenseItem;
 
-        // TODO: Should be dynamic to the current login user
-        expenseItem.userId = 'ho.clarence@gmail.com';
+        expenseItem.userId = $scope.userId;
 
         //expenseItem.dateTime = new Date();
         //expenseItem.dateTime = '2013-04-22';

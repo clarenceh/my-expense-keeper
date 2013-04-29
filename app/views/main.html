@@ -7,8 +7,13 @@
         <div class="c-cta">
             <div class="btn-group">
                 <a href="" class="btn btn-info btn-large" ng-click="register()">Register</a>
-                <a href="" class="btn btn-large" ng-click="signIn()">Sign In</a>
+                <a href="" class="btn btn-large" ng-click="signIn()" ng-show="!isLoggedIn">Sign In</a>-
+                <a href="" class="btn btn-large" ng-click="signOff()" ng-show="isLoggedIn">Sign Off</a>
             </div>
+        </div>
+
+        <div ng-show="isLoggedIn">
+            <h4>Welcome {{loggedInUser}}</h4>
         </div>
     </div>
 </div>

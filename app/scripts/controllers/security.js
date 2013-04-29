@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('SecurityCtrl', function ($scope, $log, dialog, user, $http) {
+  .controller('SecurityCtrl', function ($scope, $log, dialog, user, $http, userService) {
 
         $scope.user = user;
 
@@ -12,6 +12,7 @@ angular.module('myExpenseKeeperApp')
             // Login user with server
             $http.post('/login/', $scope.user).success(function(data, status) {
                 console.log("Login result: " + data);
+                userService.saveUserInfo($scope.user.username);
                 dialog.close();
             }).error(function(data, status) {
                 console.log('Login failed: ' + status);

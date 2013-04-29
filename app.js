@@ -107,10 +107,17 @@ app.configure(function(){
                 return res.send(401);
             }
             req.logIn(user, function(err) {
+                console.log("Logging in user: " + user.username);
                 if (err) { return next(err); }
                 res.send(200);
             });
         })(req, res, next);
+    });
+    app.get('/logout',  function(req, res, next) {
+        console.log('Logging out user: ' + req.user);
+        req.logout();
+        console.log('User logged out successfully');
+        res.send(200);
     });
     app.post('/register', api.userAdd);
     app.use(express.static(path.join(__dirname, 'app')));

@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, $dialog, flashMessage, categoryService) {
+  .controller('ExpenseeditCtrl', function ($scope, $http, $routeParams, $log, $filter, $location, $dialog,
+                                           flashMessage, categoryService, userService) {
 
         $scope.action = 'Edit';
 
         var expenseId = $routeParams.id;
         var expenseItem = {};
 
-        // TODO: retrieve from logged in user
-        $scope.userId = 'ho.clarence@gmail.com';
+        $scope.userId = userService.isLoggedIn();
 
         // Drop down list box for categories
         categoryService.findCategoriesByUser($scope.userId, function(categories) {

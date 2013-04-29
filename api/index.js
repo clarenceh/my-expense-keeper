@@ -32,30 +32,21 @@ client.open(function(err) {
     });
 });
 
-function testApi(req, res, next) {
-
-    switch (req.method) {
-
-        case 'GET':
-            contacts.find({}).toArray(function(err, results) {
-                res.send(results);
-            });
-            break;
-
-    }
-
-}
-
 function expenseList(req, res, next) {
+
+    var userId = '';
 
     if (req.user) {
         console.log('In expense list for user: ' + req.user.id);
+        userId = req.user.id;
+    } else {
+        res.send(401);
     }
 
     switch (req.method) {
 
         case 'GET':
-            expenses.find({}).toArray(function(err, results) {
+            expenses.find({userId: userId}).toArray(function(err, results) {
                 res.send(results);
             });
             break;
@@ -65,6 +56,10 @@ function expenseList(req, res, next) {
 }
 
 function expenseAdd(req, res, next) {
+
+    if (!req.user) {
+        res.send(401);
+    }
 
     console.log("Adding expense");
 
@@ -89,6 +84,10 @@ function expenseAdd(req, res, next) {
 
 function expenseGet(req, res, next) {
 
+    if (!req.user) {
+        res.send(401);
+    }
+
     var expenseItem = {};
 
     // Retrieve the id
@@ -110,6 +109,10 @@ function expenseGet(req, res, next) {
 }
 
 function expenseSave(req, res, next) {
+
+    if (!req.user) {
+        res.send(401);
+    }
 
     console.log("Saving expense");
 
@@ -143,6 +146,10 @@ function expenseSave(req, res, next) {
 
 function expenseRemove(req, res, next) {
 
+    if (!req.user) {
+        res.send(401);
+    }
+
     // Retrieve the id
     var expenseId = req.params.id;
     console.log('Removing expense with id: ' + expenseId);
@@ -164,8 +171,15 @@ function expenseRemove(req, res, next) {
 
 function userGet(req, res, next) {
 
+    if (!req.user) {
+        res.send(401);
+    }
+
     // Retrieve the id
     var userId = req.params.id;
+    if (userId !== req.user.id) {
+        res.send(401);
+    }
     console.log('Getting user with id: ' + userId);
 
     // Return the user document (exclusde password)
@@ -232,6 +246,10 @@ function validPassword(userPassword, submittedPassword) {
 
 function addCategoryForUser(req, res, next) {
 
+    if (!req.user) {
+        res.send(401);
+    }
+
     var user = req.user;
 
     var category = req.body;
@@ -252,7 +270,6 @@ function addCategoryForUser(req, res, next) {
 
 }
 
-exports.testApi = testApi;
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
 exports.expenseGet = expenseGet;

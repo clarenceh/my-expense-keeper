@@ -32,12 +32,9 @@ Generate a top nav view controller
 
 
 Todo:
-- Security
-  - hash user password
-  - implement registration function
+- Registration
+  - reject if email exist
 - Implement form validation
-- Home Page
-  - sign in to store user information in local storage???
 - Navigation bar
   - Change class to active for the current view
 - Change expense functions to retrieve for the user only
