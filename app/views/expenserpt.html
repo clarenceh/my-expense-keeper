@@ -34,12 +34,12 @@
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary" ng-click="showRpt()"
+        <button type="submit" class="btn btn-primary" ng-click="renderRpt()"
                 ng-disabled="form.$invalid">Show Report</button>
         <button type="button" class="btn" ng-click="cancel()">Cancel</button>
     </div>
 </form>
 
-<section class="container">
+<section class="container" ng-show="showRpt">
     <sky-chart></sky-chart>
 </section>

@@ -50,7 +50,7 @@ Find all expenses by userId, filter by date, group by category
 Find all expenses by userId, filter by date range, group by category
 - db.expense.aggregate( [
                           { $match : { userId : 'ho.clarence@gmail.com' } },
-                          { $match : { dateTime : {$gte: new Date('2013-04-29'), $lte: new Date('2013-04-30')} } },
+                          { $match : { dateTime : {$gte: new Date('2013-04-28'), $lte: new Date('2013-04-30')} } },
                           { $group: { _id: '$category', total: { $sum: '$amount' } } }
                         ] );
 
