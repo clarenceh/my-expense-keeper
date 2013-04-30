@@ -65,7 +65,7 @@
                             <li class="active"><a href="/">Home</a></li>
                             <li><a href="#/expenselist" ng-show="isLoggedIn">List</a></li>
                             <li><a href="#/expenseadd" ng-show="isLoggedIn">Add</a></li>
-                            <li><a href="/" ng-show="isLoggedIn">Report</a></li>
+                            <li><a href="#/expenserpt" ng-show="isLoggedIn">Report</a></li>
                             <li><a href="" data-toggle="modal" data-target="#modal-settings-form" ng-show="isLoggedIn">Settings</a></li>
                         </ul>
                     </div>
@@ -95,6 +95,7 @@
     <script src="components/angular-ui/build/angular-ui.js"></script>
     <script src="components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
     <script src="http://ivaynberg.github.com/select2/select2-3.2/select2.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -112,6 +113,7 @@
     <script src="scripts/controllers/security.js"></script>
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/expenserpt.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

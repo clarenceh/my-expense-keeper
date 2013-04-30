@@ -16,3 +16,69 @@ Remove categories from user:
 
 List all user ids:
 - db.user.find({}, {_id: 1})
+
+Aggregation
+-----------
+
+Find all expenses by userId, group by category
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $group: { _id: '$category', total: { $sum: '$amount' } } }
+                        ] );
+
+Find all expenses by userId, filter by category, group by category
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $match : { category : 'Computer' } },
+                          { $group: { _id: '$category', total: { $sum: '$amount' } } }
+                        ] );
+
+Find all expenses by userId, filter by amount, group by category
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $match : { amount : {$gt: 3000} } },
+                          { $group: { _id: '$category', total: { $sum: '$amount' } } }
+                        ] );
+
+Find all expenses by userId, filter by date, group by category
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $match : { dateTime : {$gte: new Date('2013-04-28')} } },
+                          { $group: { _id: '$category', total: { $sum: '$amount' } } }
+                        ] );
+
+Find all expenses by userId, filter by date range, group by category
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $match : { dateTime : {$gte: new Date('2013-04-29'), $lte: new Date('2013-04-30')} } },
+                          { $group: { _id: '$category', total: { $sum: '$amount' } } }
+                        ] );
+
+Find all expenses by userId, filter by date range, group by location
+- db.expense.aggregate( [
+                          { $match : { userId : 'ho.clarence@gmail.com' } },
+                          { $match : { dateTime : {$gte: new Date('2013-04-28'), $lte: new Date('2013-04-30')} } },
+                          { $group: { _id: '$location', total: { $sum: '$amount' } } }
+                        ] );
+
+Example:
+        // Execute aggregate, notice the pipeline is expressed as an Array
+        collection.aggregate([
+            { $project : {
+              author : 1,
+              tags : 1
+            }},
+            { $unwind : "$tags" },
+            { $group : {
+              _id : {tags : "$tags"},
+              authors : { $addToSet : "$author" }
+            }}
+          ], function(err, result) {
+            assert.equal(null, err);
+            assert.equal('good', result[0]._id.tags);
+            assert.deepEqual(['bob'], result[0].authors);
+            assert.equal('fun', result[1]._id.tags);
+            assert.deepEqual(['bob'], result[1].authors);
+
+            db.close();
+        });

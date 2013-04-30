@@ -23,6 +23,10 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
         templateUrl: 'views/expenseform.html',
         controller: 'ExpenseeditCtrl'
       })
+      .when('/expenserpt', {
+        templateUrl: 'views/expenserpt.html',
+        controller: 'ExpenserptCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
