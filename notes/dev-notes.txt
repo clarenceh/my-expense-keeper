@@ -2,7 +2,7 @@ Install yo, grunt and bower
 - npm install yo grunt-cli bower -g
 
 Use yo to generate the application:
-- yo angular myExpenseKeeperApp
+- yo angular myExpenseKeeper
 
 Install angular-ui
 - bower install angular-ui --save
