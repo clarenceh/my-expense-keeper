@@ -33,6 +33,7 @@ Generate a top nav view controller
 
 Todo:
 - Deploy the draft application to Nodejitsu
+  - enable SSL for Restful-WS connection
   - then test on both desktop and mobile device
 - Implement form validation
 - Navigation bar
