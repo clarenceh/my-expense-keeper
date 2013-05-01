@@ -96,6 +96,7 @@ app.configure(function(){
     app.get('/api/expense/:id', api.expenseGet);
     app.put('/api/expense/:id', api.expenseSave);
     app.delete('/api/expense/:id', api.expenseRemove);
+    app.post('/api/expenserpt', api.expenseReport);
     app.get('/api/user/:id', api.userGet);
     app.post('/api/category', api.addCategoryForUser);
     app.get('/checkuser/:id', api.checkUserId);

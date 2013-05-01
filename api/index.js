@@ -311,6 +311,38 @@ function checkUserId(req, res, next) {
 
 }
 
+function expenseReport(req, res, next) {
+
+    if (!req.user) {
+        res.send(401);
+    }
+
+    var userId = req.user.id;
+
+    var rptCriteria = req.body;
+
+    console.log('Expense report for criteria - from date: ' + rptCriteria.fromDate + ' to date: ' + rptCriteria.toDate + ' group by: ' + rptCriteria.groupBy);
+
+
+    // Retrieve expense report data from DB
+    // Use MongoDB aggregation framework
+    expenses.aggregate( [
+        { $match : { userId : userId} },
+        { $match : { dateTime : {$gte: new Date(rptCriteria.fromDate), $lte: new Date(rptCriteria.toDate)} } },
+        { $group: { _id: '$' + rptCriteria.groupBy.toLowerCase(), total: { $sum: '$amount' } } }
+    ], function(err, result) {
+        if (err) {
+            console.log('Error in adding user to DB: ' + err);
+            res.send(500);
+        };
+
+        console.log('Expense report data retrieved successfully');
+        res.send(result);
+
+    });
+
+}
+
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
 exports.expenseGet = expenseGet;
@@ -322,3 +354,4 @@ exports.userAdd = userAdd;
 exports.validPassword = validPassword;
 exports.addCategoryForUser = addCategoryForUser;
 exports.checkUserId = checkUserId;
+exports.expenseReport = expenseReport;
