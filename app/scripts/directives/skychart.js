@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .directive('skyChart', function () {
+  .directive('skyChart', function ($log) {
     return {
       restrict: 'AE',
       link: function postLink(scope, element, attrs) {
@@ -70,6 +70,35 @@ angular.module('myExpenseKeeperApp')
                       }
                   }
               }
+          });
+
+          var seriesOpts = {
+              type: 'pie',
+              name: 'Money spent'
+          }
+
+          var reportData = {};
+
+          // Watch the report data
+          scope.$watch('reportData', function() {
+            $log.info('Report data was changed, render chart data');
+
+            reportData = [];
+
+            angular.forEach(scope.reportData, function(value, key) {
+                $log.info('Id: ' + value._id + ' total: ' + value.total);
+                reportData.push({name: value._id, x: value.total, y: value.total});
+            });
+
+            seriesOpts.data = reportData;
+
+            // Remove all the existing series
+            if (chart.series.length) {
+                chart.series[0].remove();
+            }
+
+            chart.addSeries(seriesOpts);
+
           });
       }
     };

@@ -8,6 +8,7 @@ angular.module('myExpenseKeeperApp')
         $scope.groupByOptions = ['Category', 'Location'];
 
         $scope.showRpt = false;
+        $scope.reportData = {};
 
         $scope.cancel = function() {
             $location.path('/expenselist');
@@ -20,6 +21,7 @@ angular.module('myExpenseKeeperApp')
 
             $http.post('/api/expenserpt', $scope.rptCriteria).success(function(data, status) {
                 $log.info('Expense report data: ' + data);
+                $scope.reportData = data;
             }).error(function(data, status) {
                 $log.info('Error retrieving expense report data: ' + status);
             });

@@ -32,10 +32,11 @@ Generate a top nav view controller
 
 
 Todo:
+- Deploy the draft application to Nodejitsu
+  - then test on both desktop and mobile device
 - Implement form validation
 - Navigation bar
   - Change class to active for the current view
-- Change expense functions to retrieve for the user only
 - Expense list
   - implement pagination
   - use infinite scroll???
