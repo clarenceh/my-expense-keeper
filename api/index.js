@@ -14,8 +14,8 @@ var env = process.env.NODE_ENV || 'development';
 
 var dbHost = '';
 var dbPort = 0;
-var dbUserName = 'clarence';
-var dbPassword = 'maxell';
+var dbUserName = process.env.DB_USER_NAME || '';
+var dbPassword = process.env.DB_PASSWORD || '';
 
 // Configure DB server for diff. envs
 if ('development' == env) {
