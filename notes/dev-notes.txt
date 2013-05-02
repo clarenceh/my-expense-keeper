@@ -34,7 +34,10 @@ Generate a top nav view controller
 Todo:
 - Location field
   - Study to retrieve the location in text from GeoLocation API
-- Study using PhoneGap to deploy to iOS and Andriod devices
+- Study using PhoneGap to deploy to iOS and Android devices
+- Study dev hybrid application
+  - iOS (UIWebView)
+  - Android (WebView)
 - Deploy the draft application to Nodejitsu
   - enable SSL for Restful-WS connection
   - then test on both desktop and mobile device
