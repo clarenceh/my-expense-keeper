@@ -12,6 +12,16 @@ var express = require('express')
     , LocalStrategy = require('passport-local').Strategy
     , api = require('./api');
 
+var env = process.env.NODE_ENV || 'development';
+
+// Set server port
+var port = 0;
+if ('development' == env) {
+    port = 3000;
+} else if ('production' == env) {
+    port = 8080;
+};
+
 var app = express();
 
 function findById(id, fn) {
@@ -82,7 +92,7 @@ function login(req, res, next) {
 }
 
 app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
+    app.set('port', port);
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.cookieParser());
@@ -125,10 +135,11 @@ app.configure(function(){
     app.use(express.static(path.join(__dirname, 'app')));
 });
 
-app.configure('development', function(){
+if ('development' == env) {
     app.use(express.errorHandler());
-});
+};
 
 http.createServer(app).listen(app.get('port'), function(){
+    console.log('Current environment: ' + env);
     console.log("Express server listening on port " + app.get('port'));
 });

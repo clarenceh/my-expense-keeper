@@ -32,9 +32,15 @@ Generate a top nav view controller
 
 
 Todo:
+- Location field
+  - Study to retrieve the location in text from GeoLocation API
+- Study using PhoneGap to deploy to iOS and Andriod devices
 - Deploy the draft application to Nodejitsu
   - enable SSL for Restful-WS connection
   - then test on both desktop and mobile device
+- Deployment improvement
+  - use minified version of JS libraries
+  - use Grunt to generate minified version of application
 - Implement form validation
 - Navigation bar
   - Change class to active for the current view
@@ -49,6 +55,9 @@ Todo:
   - select language
   - logout
   - ...
+- testing
+  - unit test
+  - e2e testing
 
 Issues:
 - Category

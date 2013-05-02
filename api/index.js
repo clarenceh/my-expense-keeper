@@ -10,11 +10,27 @@
 //    {userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650}
 //];
 
+var env = process.env.NODE_ENV || 'development';
+
+var dbHost = '';
+var dbPort = 0;
+var dbUserName = 'clarence';
+var dbPassword = 'maxell';
+
+// Configure DB server for diff. envs
+if ('development' == env) {
+    dbHost = '127.0.0.1';
+    dbPort = 27017;
+} else if ('production' == env) {
+    dbHost = 'dharma.mongohq.com';
+    dbPort = 10036;
+};
+
 var bcrypt = require('dojo-bcrypt')
     , mongodb = require('mongodb')
     , passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy
-    , server = new mongodb.Server('127.0.0.1', 27017, {});
+    , server = new mongodb.Server(dbHost, dbPort, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
 var users;
@@ -22,6 +38,18 @@ var users;
 //Open a MongoDB connection
 client.open(function(err) {
     if (err) throw err;
+
+    // If production, login to DB
+    if ('production' == env) {
+        client.authenticate(dbUserName, dbPassword, function authenticate(err, replies) {
+            if (err) {
+                throw err;
+            }
+
+            // You are now connected and authenticated.
+        });
+    }
+
     client.collection('expense', function(err, collection) {
         if (err) throw err;
         console.log('We are now able to perform queries on expenses.');
@@ -29,7 +57,7 @@ client.open(function(err) {
     });
     client.collection('user', function(err, collection) {
         if (err) throw err;
-        console.log('We are now able to perform queries on expenses.');
+        console.log('We are now able to perform queries on users.');
         users = collection;
     });
 });
