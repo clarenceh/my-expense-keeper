@@ -32,8 +32,6 @@ Generate a top nav view controller
 
 
 Todo:
-- Location field
-  - Study to retrieve the location in text from GeoLocation API
 - Study dev hybrid application
   - iOS (UIWebView)
   - Android (WebView)
@@ -67,21 +65,11 @@ Issues:
   - how to display the form element validation message???
 - Date time
   - Add time selection (later enhancement)
-- Location
-  - Check using geolocation api to get the location in text
-- Category
-  - Retrieve from Restful-WS
 - Rating
   - use stars
-- Reponsive design
-  - the drop down for collapse menu not working
 
 i18n:
 - implement multiple languages
 
 security:
 - implement security and userid checking
-
-Deployment:
-- Test deploy to nodejitsu and mongohq (or mongolab)
-
