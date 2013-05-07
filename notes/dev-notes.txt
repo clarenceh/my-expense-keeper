@@ -75,8 +75,6 @@ Issues:
   - use stars
 - Reponsive design
   - the drop down for collapse menu not working
-- Android
-  - need to study how to use WebView with https Web App URL
 
 i18n:
 - implement multiple languages
