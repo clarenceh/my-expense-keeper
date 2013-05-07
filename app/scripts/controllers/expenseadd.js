@@ -34,8 +34,24 @@ angular.module('myExpenseKeeperApp')
         //Get latitude and longitude;
         function successFunction(position) {
             var lat = position.coords.latitude;
-            var long = position.coords.longitude;
-            $log.info('lat: ' + lat + 'long: ' + long);
+            var lng = position.coords.longitude;
+            $log.info('lat: ' + lat + 'lng: ' + lng);
+
+            // Get the current location in text
+            var latlng = new google.maps.LatLng(lat, lng);
+
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[2]) {
+                        $log.info('Address: ' + results[2].formatted_address);
+                        expenseItem.location = results[2].formatted_address;
+                        $scope.$apply();
+                    }
+                }
+            });
+
         }
 
         function errorFunction() {
