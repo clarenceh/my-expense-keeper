@@ -34,12 +34,10 @@ Generate a top nav view controller
 Todo:
 - Location field
   - Study to retrieve the location in text from GeoLocation API
-- Study using PhoneGap to deploy to iOS and Android devices
 - Study dev hybrid application
   - iOS (UIWebView)
   - Android (WebView)
 - Deploy the draft application to Nodejitsu
-  - enable SSL for Restful-WS connection
   - then test on both desktop and mobile device
 - Deployment improvement
   - use minified version of JS libraries
@@ -77,6 +75,8 @@ Issues:
   - use stars
 - Reponsive design
   - the drop down for collapse menu not working
+- Android
+  - need to study how to use WebView with https Web App URL
 
 i18n:
 - implement multiple languages
