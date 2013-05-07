@@ -12,7 +12,9 @@
     "angular-ui": "~0.4.0",
     "angular-ui-bootstrap-bower": "~0.2.0",
     "jquery": "1.9.1",
-    "jquery-ui": "1.9.2"
+    "jquery-ui": "1.9.2",
+    "select2": "~3.3.2",
+    "highcharts": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.5",
