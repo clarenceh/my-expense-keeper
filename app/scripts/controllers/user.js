@@ -10,7 +10,7 @@ angular.module('myExpenseKeeperApp')
 
             var userCategory = {category: $scope.category};
             $http.post('/api/category', userCategory).success(function(data, status) {
-                console.log('Category added successfully');
+                console.log('Category added successfully: ' + $scope.category);
                 dialog.close($scope.category);
             }).error(function(data, status) {
                 console.log('Error adding category: ' + status);
