@@ -44,11 +44,22 @@ Todo:
 - Navigation bar
   - Change class to active for the current view
 - Expense list
+  - add list criteria
+    - Period (last week, last month, last 3/6 months, last year, or date range), category, location
   - implement pagination
   - use infinite scroll???
-- Use icon-font for buttons and rating images, etc.
+- Expense Item
+  - Date: study to use iOS like date input
+  - Use icon-font for buttons and rating images, etc.
+    - develop a directive for rating???
+- Expense Report
+  - responsive design
+    - when screen width is good enough, display report criteria on left, report on right
+    - else, criteria on top, report on bottom
+  - add more report type (line, bar)
+  - add by period (e.g. expense by category/location by month for the year)
+  - add small charts???
 - Re-factor expense http requests into an AngularJS service
-- develop a directive for rating???
 - add responsive design
 - setting modal dialog
   - select language
