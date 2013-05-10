@@ -10,13 +10,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="stylesheet" href="components/jquery-ui/themes/base/jquery.ui.css">-->
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/bootstrap-responsive.min.css">
-    <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">-->
     <link rel="stylesheet" href="components/jquery-ui/themes/base/minified/jquery-ui.min.css">
     <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
-    <!--<link href="http://ivaynberg.github.com/select2/select2-3.2/select2.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="components/select2/select2.css">
     <link rel="stylesheet" href="styles/main.css">
   </head>
@@ -29,28 +26,6 @@
       <script src="components/es5-shim/es5-shim.js"></script>
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
-
-    <!-- Header -->
-<!--    <header>
-        <hgroup>
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span4 appname"><h4><a href="/">My Expense Keeper</a></h4></div>
-                    <div class="span2 offset6 username">Clarence</div>
-                </div>
-            </div>
-        </hgroup>
-    </header>-->
-
-    <!-- Navigation -->
-<!--    <nav ng-controller="TopnavCtrl">
-        <div class="container">
-            <button class="btn btn-primary" type="button" ng-click="list()">List</button>
-            <button class="btn" type="button" ng-click="add()">Add</button>
-            <button class="btn btn-success" type="button">Reports</button>
-            <button class="btn btn-info" type="button">Settings</button>
-        </div>
-    </nav>-->
 
     <header>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -66,10 +41,10 @@
 
                     <div class="collapse nav-collapse">
                         <ul class="nav pull-right">
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="#/expenselist" ng-show="isLoggedIn">List</a></li>
-                            <li><a href="#/expenseadd" ng-show="isLoggedIn">Add</a></li>
-                            <li><a href="#/expenserpt" ng-show="isLoggedIn">Report</a></li>
+                            <li ng-class="{active:locationHome()}"><a href="/">Home</a></li>
+                            <li ng-class="{active:locationList()}"><a href="#/expenselist" ng-show="isLoggedIn">List</a></li>
+                            <li ng-class="{active:locationAdd()}"><a href="#/expenseadd" ng-show="isLoggedIn">Add</a></li>
+                            <li ng-class="{active:locationReport()}"><a href="#/expenserpt" ng-show="isLoggedIn">Report</a></li>
                             <li><a href="" data-toggle="modal" data-target="#modal-settings-form" ng-show="isLoggedIn">Settings</a></li>
                         </ul>
                     </div>
@@ -90,10 +65,8 @@
         </div>
     </footer>
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
     <script src="components/jquery/jquery.min.js"></script>
     <script src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
-    <!--<script src="components/jquery/jquery.js"></script>-->
     <script src="components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
@@ -101,9 +74,7 @@
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
     <script src="components/angular-ui/build/angular-ui.js"></script>
     <script src="components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
-    <!--<script src="http://ivaynberg.github.com/select2/select2-3.2/select2.js"></script>-->
     <script src="components/select2/select2.min.js"></script>
-    <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
     <script src="components/highcharts/highcharts.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXa85ynTCCrEu0kkpgrkf9GuGd2jHWFR8&sensor=true"
             type="text/javascript"></script>

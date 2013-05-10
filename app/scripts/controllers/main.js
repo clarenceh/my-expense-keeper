@@ -9,21 +9,30 @@ angular.module('myExpenseKeeperApp')
     $scope.signIn = function(user) {
         var d = $dialog.dialog({dialogFade: true, resolve: {user: function(){ return angular.copy(user); }} });
         d.open('template/dialog/login.html', 'SecurityCtrl').then(function(result) {
-            $window.location.reload();
+            //$window.location.reload();
+            $scope.loggedInUser = userService.isLoggedIn();
+            $scope.isLoggedIn = !!$scope.loggedInUser;
+            $scope.$emit('userLoggedIn');
         });
     };
 
     $scope.signOff = function() {
         userService.logOut(function() {
             $location.path('/');
-            $window.location.reload();
+            //$window.location.reload();
+            $scope.loggedInUser = userService.isLoggedIn();
+            $scope.isLoggedIn = !!$scope.loggedInUser;
+            $scope.$emit('userLoggedOff');
         });
     }
 
     $scope.register = function(user) {
         var d = $dialog.dialog({dialogFade: true, resolve: {user: function(){ return angular.copy(user); }} });
         d.open('template/dialog/register.html', 'RegisterCtrl').then(function(result) {
-            $window.location.reload();
+            //$window.location.reload();
+            $scope.loggedInUser = userService.isLoggedIn();
+            $scope.isLoggedIn = !!$scope.loggedInUser;
+            $scope.$emit('userLoggedIn');
         });
     };
 
