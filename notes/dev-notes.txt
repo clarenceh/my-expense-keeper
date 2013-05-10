@@ -32,6 +32,8 @@ Generate a top nav view controller
 
 
 Todo:
+- Register
+  - add confirm password field
 - Study dev hybrid application
   - iOS (UIWebView)
   - Android (WebView)

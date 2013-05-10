@@ -6,6 +6,10 @@ angular.module('myExpenseKeeperApp')
     $scope.loggedInUser = userService.isLoggedIn();
     $scope.isLoggedIn = !!$scope.loggedInUser;
 
+    $scope.home = function() {
+        $location.path("/");
+    }
+
     $scope.list = function() {
         $location.path('expenselist');
     }

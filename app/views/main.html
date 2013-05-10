@@ -1,19 +1,37 @@
 <div class="container">
     <div class="row">
-        <h1>My Expense Keeper</h1>
+        <h2 class="text-center">My Expense Keeper</h2>
 
-        <p class="lead">Help you to keep track your expenses.</p>
+        <p class="lead text-center">Help you to keep track your expenses.</p>
 
-        <div class="c-cta">
+<!--        <div class="c-cta">
             <div class="btn-group">
                 <a href="" class="btn btn-info btn-large" ng-click="register()">Register</a>
-                <a href="" class="btn btn-large" ng-click="signIn()" ng-show="!isLoggedIn">Sign In</a>-
+                <a href="" class="btn btn-large" ng-click="signIn()" ng-show="!isLoggedIn">Sign In</a>
                 <a href="" class="btn btn-large" ng-click="signOff()" ng-show="isLoggedIn">Sign Off</a>
             </div>
+        </div>-->
+
+        <a href="" class="btn btn-large btn-block btn-primary" ng-click="list()" ng-show="isLoggedIn">List Expense</a>
+
+        <a href="" class="btn btn-large btn-block btn-info" ng-click="add()" ng-show="isLoggedIn">Add Expense</a>
+
+        <a href="" class="btn btn-large btn-block btn-success" ng-click="report()" ng-show="isLoggedIn">Reports</a>
+
+        <a href="" class="btn btn-large btn-block btn-inverse" ng-click="setting()" ng-show="isLoggedIn">Settings</a>
+
+        <a href="" class="btn btn-large btn-block btn-primary" ng-click="signIn()" ng-show="!isLoggedIn">Sign In</a>
+
+        <a href="" class="btn btn-info btn-large btn-block" ng-click="register()" ng-show="!isLoggedIn">Register</a>
+
+        <a href="" class="btn btn-large btn-block" ng-click="signOff()" ng-show="isLoggedIn">Sign Off</a>
+
+        <div ng-show="!isLoggedIn">
+            <h4 class="text-center">Please Sign In or Register to start</h4>
         </div>
 
         <div ng-show="isLoggedIn">
-            <h4>Welcome {{loggedInUser}}</h4>
+            <h4 class="text-center">Welcome {{loggedInUser}}</h4>
         </div>
     </div>
 </div>

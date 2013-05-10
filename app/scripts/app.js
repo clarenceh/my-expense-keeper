@@ -27,6 +27,14 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
         templateUrl: 'views/expenserpt.html',
         controller: 'ExpenserptCtrl'
       })
+      .when('/loginform', {
+        templateUrl: 'views/loginform.html',
+        controller: 'SecurityCtrl'
+      })
+      .when('/registerform', {
+        templateUrl: 'views/registerform.html',
+        controller: 'RegisterCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

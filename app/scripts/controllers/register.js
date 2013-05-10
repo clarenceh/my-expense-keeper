@@ -1,20 +1,32 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('RegisterCtrl', function ($scope, $log, dialog, user, $http, userService) {
+  .controller('RegisterCtrl', function ($scope, $log, $http, $location, userService) {
 
-        $scope.user = user;
+        //$scope.user = user;
+        $scope.user = {};
 
         $scope.actionFailed = false;
         $scope.userIdExist = false;
+        $scope.passwordNotMatch = false;
 
         $scope.close = function(){
-            dialog.close();
+            //dialog.close();
         };
 
         // Register
         $scope.register = function() {
+
+            $scope.actionFailed = false;
+            $scope.userIdExist = false;
+            $scope.passwordNotMatch = false;
+
             console.log("Username: " + $scope.user.username + " password: " + $scope.user.password);
+
+            if ($scope.user.password !== $scope.user.confirmPassword) {
+                $scope.passwordNotMatch = true;
+                return;
+            }
 
             // Check existence of username
             $http.get('/checkuser/' + $scope.user.username).success(function(data, status) {
@@ -22,7 +34,8 @@ angular.module('myExpenseKeeperApp')
                 console.log('Registering user');
                 $http.post('/register/', $scope.user).success(function(data, status) {
                     console.log("Register result: " + data);
-                    dialog.close();
+                    //dialog.close();
+                    $location.path('/');
                 }).error(function(data, status) {
                     console.log('Register failed: ' + status);
                     $scope.actionFailed = true;
@@ -33,7 +46,13 @@ angular.module('myExpenseKeeperApp')
                 // Save log in information
                 userService.saveUserInfo($scope.user.username);
 
-                dialog.close();
+                $scope.loggedInUser = userService.isLoggedIn();
+                $scope.isLoggedIn = !!$scope.loggedInUser;
+                $scope.$emit('userLoggedIn');
+
+                $location.path('/');
+
+                //dialog.close();
             }).error(function(data, status) {
                 console.log('Register failed: ' + status);
                 if (status == 404) {
@@ -41,6 +60,10 @@ angular.module('myExpenseKeeperApp')
                 }
             });
 
+        }
+
+        $scope.cancel = function() {
+            $location.path('/');
         }
 
   });
