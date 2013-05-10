@@ -35,6 +35,12 @@ Todo:
 - iOS
   - study the problem on iPhone that after add an expense, the page was en-larged and require re-size to see the whole page
   - on iPad, study to re-size the page to fit the area whenever the orientation was changed
+- Implement settings view
+  - change password
+  - change username
+  - select language (hard code to Eng at the moment)
+- Login
+  - implement forgot password feature
 - Study dev hybrid application
   - iOS (UIWebView)
   - Android (WebView)
