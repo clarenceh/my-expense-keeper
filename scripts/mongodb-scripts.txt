@@ -17,6 +17,9 @@ Remove categories from user:
 List all user ids:
 - db.user.find({}, {_id: 1})
 
+Update rating to zero for all expense records:
+- db.expense.update({}, {$set: {rating: 0}}, {multi: true})
+
 Aggregation
 -----------
 

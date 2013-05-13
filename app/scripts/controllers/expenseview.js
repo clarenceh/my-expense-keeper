@@ -10,6 +10,9 @@ angular.module('myExpenseKeeperApp')
 
         var expenseId = $routeParams.id;
 
+        // For rating field readonly control
+        $scope.isReadonly = true;
+
         // Submit request to server
         $http.get('/api/expense/' + expenseId).success(function(data, status) {
             $log.info('Get expense success: ' + data);

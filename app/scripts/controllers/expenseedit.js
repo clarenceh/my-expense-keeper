@@ -11,6 +11,9 @@ angular.module('myExpenseKeeperApp')
 
         $scope.userId = userService.isLoggedIn();
 
+        // For rating field readonly control
+        $scope.isReadonly = false;
+
         // Drop down list box for categories
         categoryService.findCategoriesByUser($scope.userId, function(categories) {
             if (!!categories) {
@@ -52,6 +55,10 @@ angular.module('myExpenseKeeperApp')
 
         $scope.cancel = function() {
             window.history.back();
+        }
+
+        $scope.clearRating = function() {
+            expenseItem.rating = 0;
         }
 
         $scope.addCategory = function(category) {

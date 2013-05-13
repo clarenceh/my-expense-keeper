@@ -47,9 +47,14 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="rating">Rating:</label>
+        <!--<label class="control-label" for="rating">Rating:</label>-->
+        <label class="control-label">Rating:</label>
         <div class="controls">
-            <input id="rating" name="rating" type="number" min="1" max="5" class="input-mini" placeholder="Rating" ng-model="expenseItem.rating">
+            <!--<input id="rating" name="rating" type="number" min="1" max="5" class="input-mini" placeholder="Rating" ng-model="expenseItem.rating">-->
+            <div class="controls-rating">
+                <rating value="expenseItem.rating" max="5" readonly="isReadonly" ng-model="expenseItem.rating"></rating>
+                <button class="btn btn-small" ng-click="clearRating()" tooltip-placement="right" tooltip="Clear Rating"><i class="icon-remove-sign"></i></button>
+            </div>
         </div>
     </div>
 

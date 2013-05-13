@@ -6,6 +6,10 @@ body {
     margin: 2em, 0;
 }
 
+.controls-rating {
+    padding-top: 5px;
+}
+
 @media only screen and (max-width: 768px) {
     body {
         padding-top: 0;

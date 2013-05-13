@@ -44,7 +44,10 @@
     <div class="control-group">
         <label class="control-label">Rating:</label>
         <div class="controls">
-            <span class="uneditable-input">{{expenseItem.rating}}</span>
+            <!--<span class="uneditable-input">{{expenseItem.rating}}</span>-->
+            <div class="controls-rating">
+                <rating value="expenseItem.rating" max="5" readonly="isReadonly" ng-model="expenseItem.rating"></rating>
+            </div>
         </div>
     </div>
 

@@ -9,6 +9,9 @@ angular.module('myExpenseKeeperApp')
 
         $scope.expenseItem = {};
 
+        // For rating field readonly control
+        $scope.isReadonly = false;
+
         // Drop down list box for categories
         categoryService.findCategoriesByUser($scope.userId, function(categories) {
             if (!!categories) {
@@ -25,6 +28,8 @@ angular.module('myExpenseKeeperApp')
         //expenseItem.dateTime = new Date();
         //expenseItem.dateTime = '2013-04-22';
         expenseItem.dateTime = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+        expenseItem.rating = 0;
 
         //Check if browser supports W3C Geolocation API
         if (navigator.geolocation) {
@@ -78,6 +83,10 @@ angular.module('myExpenseKeeperApp')
 
         $scope.cancel = function() {
             $location.path('/expenselist');
+        }
+
+        $scope.clearRating = function() {
+            expenseItem.rating = 0;
         }
 
         $scope.addCategory = function(category) {
