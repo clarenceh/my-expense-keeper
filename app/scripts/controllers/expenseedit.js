@@ -65,9 +65,11 @@ angular.module('myExpenseKeeperApp')
             var d = $dialog.dialog({dialogFade: true, resolve: {category: function(){ return angular.copy(category); }} });
             d.open('template/dialog/add-category.html', 'UserCtrl')
                 .then(function(result) {
-                    console.log('In add expense - category: ' + result);
-                    $scope.categories.push(result);
-                    expenseItem.category = result;
+                    console.log('In edit expense - category: ' + result);
+                    if (angular.isString(result) && result.length > 0) {
+                        $scope.categories.push(result);
+                        expenseItem.category = result;
+                    }
                 });
         };
 

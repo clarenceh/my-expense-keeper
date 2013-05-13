@@ -57,8 +57,6 @@ Todo:
   - use infinite scroll???
 - Expense Item
   - Date: study to use iOS like date input
-  - Use icon-font for buttons and rating images, etc.
-    - develop a directive for rating???
 - Expense Report
   - add more report type (line, bar)
   - add by period (e.g. expense by category/location by month for the year)
@@ -74,14 +72,10 @@ Todo:
   - e2e testing
 
 Issues:
-- Category
-  - When add an item, the select2 ui control's value not updated after update the model
 - Validation
   - how to display the form element validation message???
 - Date time
   - Add time selection (later enhancement)
-- Rating
-  - use stars
 
 i18n:
 - implement multiple languages

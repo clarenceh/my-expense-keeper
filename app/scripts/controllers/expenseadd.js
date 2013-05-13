@@ -94,8 +94,11 @@ angular.module('myExpenseKeeperApp')
             d.open('template/dialog/add-category.html', 'UserCtrl')
                 .then(function(result) {
                     console.log('In add expense - category: ' + result);
-                    $scope.categories.push(result);
-                    expenseItem.category = result;
+                    if (result !== undefined && result.length > 0) {
+                        $scope.categories.push(result);
+                        expenseItem.category = result;
+                    }
                 });
         };
+
     });
