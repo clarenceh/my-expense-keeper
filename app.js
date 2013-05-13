@@ -101,7 +101,7 @@ app.configure(function(){
     app.use(express.session({ secret: 'keyboard cat' }));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.get('/api/expense/listdata', api.expenseList);
+    app.get('/api/expense/listdata/:days', api.expenseList);
     app.post('/api/expense', api.expenseAdd);
     app.get('/api/expense/:id', api.expenseGet);
     app.put('/api/expense/:id', api.expenseSave);

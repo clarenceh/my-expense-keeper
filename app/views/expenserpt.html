@@ -8,7 +8,6 @@
             <div class="control-group">
                 <label class="control-label" for="fromDate">*From Date:</label>
                 <div class="controls">
-                    <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
                     <input id="fromDate" name="fromDate" type="text" sky-date ng-model="$parent.rptCriteria.fromDate" required>
                     <span class="help-inline"><small class="muted">YYYY-MM-DD</small></span>
                 </div>
@@ -17,27 +16,23 @@
             <div class="control-group">
                 <label class="control-label" for="toDate">*To Date:</label>
                 <div class="controls">
-                    <!--<input id="date" type="date" sky-date class="input-large" ng-model="expenseItem.date" required>-->
                     <input id="toDate" name="toDate" type="text" sky-date ng-model="$parent.rptCriteria.toDate" required>
                     <span class="help-inline"><small class="muted">YYYY-MM-DD</small></span>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="groupBy">*Group By:</label>
+                <label class="control-label">*Group By:</label>
                 <div class="controls">
-                    <!-- <input id="category" name="category" type="text" class="input-medium" placeholder="Category" ng-model="expenseItem.category" required>-->
-                    <select ui-select2="{width:'200px'}" id="groupBy" name="groupBy" required
-                            ng-model="rptCriteria.groupBy"
-                            data-placeholder="-- Select One --">
-                        <option></option>
-                        <option ng-repeat="groupByOption in groupByOptions" value="{{groupByOption}}">{{groupByOption}}</option>
-                    </select>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-model="rptCriteria.groupBy" btn-radio="'Category'">Category</button>
+                        <button type="button" class="btn btn-primary" ng-model="rptCriteria.groupBy" btn-radio="'Location'">Location</button>
+                    </div>
                 </div>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" ng-click="renderRpt()"
+                <button type="submit" class="btn btn-success" ng-click="renderRpt()"
                         ng-disabled="form.$invalid">Show Report</button>
                 <button type="button" class="btn" ng-click="cancel()">Cancel</button>
             </div>

@@ -1,11 +1,22 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('ExpenserptCtrl', function ($scope, $http, $location, $log) {
+  .controller('ExpenserptCtrl', function ($scope, $http, $location, $log, $filter) {
 
         $scope.rptCriteria = {};
 
         $scope.groupByOptions = ['Category', 'Location'];
+
+        // Default group by option
+        $scope.rptCriteria.groupBy = 'Category';
+
+        // Default date range
+        $scope.rptCriteria.toDate = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+        var fromDate = new Date();
+        fromDate = fromDate.setDate(fromDate.getDate() - 30);
+        fromDate = new Date(fromDate);
+        $scope.rptCriteria.fromDate = $filter('date')(fromDate, 'yyyy-MM-dd');
 
         $scope.showRpt = false;
         $scope.reportData = {};

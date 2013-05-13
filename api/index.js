@@ -73,10 +73,20 @@ function expenseList(req, res, next) {
         res.send(401);
     }
 
+    // Retrieve the past no. of days to query
+    var days = req.params.days;
+    console.log('Querying expense for user: ' + userId + ' for the past '  + days + ' days');
+    var toDate = new Date();
+    var fromDate = new Date();
+    fromDate = fromDate.setDate(fromDate.getDate() - days);
+    fromDate = new Date(fromDate);
+
+    console.log('From date: ' + fromDate + ' to date: ' + toDate);
+
     switch (req.method) {
 
         case 'GET':
-            expenses.find({userId: userId}).toArray(function(err, results) {
+            expenses.find({userId: userId, dateTime: {$gte: fromDate, $lte: toDate}}).toArray(function(err, results) {
                 res.send(results);
             });
             break;

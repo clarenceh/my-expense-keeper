@@ -12,18 +12,19 @@ angular.module('myExpenseKeeperApp')
         // For rating field readonly control
         $scope.isReadonly = false;
 
+        var expenseItem = $scope.expenseItem;
+
+        expenseItem.userId = $scope.userId;
+
         // Drop down list box for categories
         categoryService.findCategoriesByUser($scope.userId, function(categories) {
             if (!!categories) {
                 $scope.categories = categories;
+                expenseItem.category = categories[0];
             } else {
                 $scope.categories = [];
             }
         });
-
-        var expenseItem = $scope.expenseItem;
-
-        expenseItem.userId = $scope.userId;
 
         //expenseItem.dateTime = new Date();
         //expenseItem.dateTime = '2013-04-22';

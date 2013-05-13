@@ -5,9 +5,18 @@ angular.module('myExpenseKeeperApp')
 
     $scope.flash = flashMessage;
 
-    $http.get('/api/expense/listdata').success(function(data) {
-        $log.info('Response data: ' + data);
+    $scope.days = '7';
+
+    $http.get('/api/expense/listdata/' + $scope.days).success(function(data) {
+        $log.info('Response data: ' + angular.toJson(data));
         $scope.expenses = data;
+    });
+
+    $scope.$watch('days', function(newValue, oldValue) {
+        $http.get('/api/expense/listdata/' + $scope.days).success(function(data) {
+            $log.info('Response data: ' + angular.toJson(data));
+            $scope.expenses = data;
+        });
     });
 
   });
