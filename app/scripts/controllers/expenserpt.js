@@ -21,15 +21,16 @@ angular.module('myExpenseKeeperApp')
         $scope.showRpt = false;
         $scope.reportData = {};
 
-        $scope.cancel = function() {
+        $scope.cancel = function () {
             $location.path('/expenselist');
-        }
+        };
 
         $scope.renderRpt = function() {
 
             // Retrieve data from server for display report
             $log.info('Report options: from date: ' + $scope.rptCriteria.fromDate + ' to date: ' + $scope.rptCriteria.toDate + ' group by: ' + $scope.rptCriteria.groupBy);
 
+            //noinspection JSHint
             $http.post('/api/expenserpt', $scope.rptCriteria).success(function(data, status) {
                 $log.info('Expense report data: ' + data);
                 $scope.reportData = data;
@@ -38,6 +39,6 @@ angular.module('myExpenseKeeperApp')
             });
 
             $scope.showRpt = true;
-        }
+        };
 
-  });
+    });

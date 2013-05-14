@@ -26,16 +26,9 @@ angular.module('myExpenseKeeperApp')
             }
         });
 
-        //expenseItem.dateTime = new Date();
-        //expenseItem.dateTime = '2013-04-22';
         expenseItem.dateTime = $filter('date')(new Date(), 'yyyy-MM-dd');
 
         expenseItem.rating = 0;
-
-        //Check if browser supports W3C Geolocation API
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
-        }
 
         //Get latitude and longitude;
         function successFunction(position) {
@@ -44,16 +37,22 @@ angular.module('myExpenseKeeperApp')
             $log.info('lat: ' + lat + 'lng: ' + lng);
 
             // Get the current location in text
+            //noinspection JSHint
             var latlng = new google.maps.LatLng(lat, lng);
 
+            //noinspection JSHint
             var geocoder = new google.maps.Geocoder();
 
             geocoder.geocode({'latLng': latlng}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[2]) {
-                        $log.info('Address: ' + results[2].formatted_address);
-                        expenseItem.location = results[2].formatted_address;
-                        $scope.$apply();
+                //noinspection JSHint
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results[2]) { //noinspection JSHint
+                        {
+                            /*jshint camelcase:false */
+                            $log.info('Address: ' + results[2].formatted_address);
+                            expenseItem.location = results[2].formatted_address;
+                            $scope.$apply();
+                        }
                     }
                 }
             });
@@ -64,12 +63,18 @@ angular.module('myExpenseKeeperApp')
             $log.info('Error in reading location');
         }
 
-        $scope.save = function() {
+        //Check if browser supports W3C Geolocation API
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+        }
+
+        $scope.save = function () {
             $log.info('Date: ' + expenseItem.dateTime);
             $log.info('Adding expense');
 
             // Submit request to server
-            $http.post('/api/expense', expenseItem).success(function(data, status) {
+            //noinspection JSHint
+            $http.post('/api/expense', expenseItem).success(function (data, status) {
                 $log.info('Add expense success!');
 
                 // Add message via messageService for display
@@ -77,18 +82,18 @@ angular.module('myExpenseKeeperApp')
 
                 // Redirect to view page
                 $location.path('/expenseview/' + data._id);
-            }).error(function(data, status) {
-                $log.info('Add expense fail: ' + status);
-            });
-        }
+            }).error(function (data, status) {
+                    $log.info('Add expense fail: ' + status);
+                });
+        };
 
-        $scope.cancel = function() {
+        $scope.cancel = function () {
             $location.path('/expenselist');
-        }
+        };
 
-        $scope.clearRating = function() {
+        $scope.clearRating = function () {
             expenseItem.rating = 0;
-        }
+        };
 
         $scope.addCategory = function(category) {
             var d = $dialog.dialog({dialogFade: true, resolve: {category: function(){ return angular.copy(category); }} });

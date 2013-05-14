@@ -6,17 +6,17 @@ angular.module('myExpenseKeeperApp')
     $scope.loggedInUser = userService.isLoggedIn();
     $scope.isLoggedIn = !!$scope.loggedInUser;
 
-    $scope.home = function() {
-        $location.path("/");
-    }
+    $scope.home = function () {
+        $location.path('/');
+    };
 
-    $scope.list = function() {
+    $scope.list = function () {
         $location.path('expenselist');
-    }
+    };
 
-    $scope.add = function() {
+    $scope.add = function () {
         $location.path('expenseadd');
-    }
+    };
 
     $rootScope.$on('userLoggedIn', function() {
         $log.info('User logged in');
@@ -30,35 +30,19 @@ angular.module('myExpenseKeeperApp')
         $scope.isLoggedIn = !!$scope.loggedInUser;
     });
 
-    $scope.locationHome = function() {
-        if ($location.path() === '/') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    $scope.locationHome = function () {
+        return ($location.path() === '/');
+    };
 
-    $scope.locationList = function() {
-        if ($location.path() === '/expenselist') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    $scope.locationList = function () {
+        return ($location.path() === '/expenselist');
+    };
 
-    $scope.locationAdd = function() {
-        if ($location.path() === '/expenseadd') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    $scope.locationAdd = function () {
+        return ($location.path() === '/expenseadd');
+    };
 
     $scope.locationReport = function() {
-        if ($location.path() === '/expenserpt') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-  });
+        return ($location.path() === '/expenserpt');
+    };
+});

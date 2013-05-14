@@ -20,8 +20,7 @@ if ('development' == env) {
     port = 3000;
 } else if ('production' == env) {
     port = 8080;
-};
-
+}
 var app = express();
 
 function findById(id, fn) {
@@ -137,7 +136,7 @@ app.configure(function(){
 
 if ('development' == env) {
     app.use(express.errorHandler());
-};
+}
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Current environment: ' + env);

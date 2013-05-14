@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .factory('flashMessage', function ($rootScope, $log) {
+  .factory('flashMessage', function ($rootScope) {
 
     var queue = [], currentMessage = {};
 
     $rootScope.$on('$routeChangeStart', function() {
-        console.log("Route change start, queue length: " + queue.length);
-        if (queue.length > 0)
+        console.log('Route change start, queue length: ' + queue.length);
+        if (queue.length > 0) {
             currentMessage = queue.shift();
-        else
+        } else {
             currentMessage = {};
+        }
     });
 
     // Public API here
@@ -24,4 +25,4 @@ angular.module('myExpenseKeeperApp')
             return currentMessage;
         }
     };
-  });
+});

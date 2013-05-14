@@ -24,6 +24,7 @@ angular.module('myExpenseKeeperApp')
         });
 
         // Submit request to server
+        //noinspection JSHint
         $http.get('/api/expense/' + expenseId).success(function(data, status) {
             $log.info('Get expense success: ' + data);
             $log.info('Expense date: ' + data.dateTime);
@@ -33,14 +34,15 @@ angular.module('myExpenseKeeperApp')
             expenseItem.dateTime = $filter('date')(expenseItem.dateTime, 'yyyy-MM-dd');
         }).error(function(data, status) {
                 $log.info('Get expense fail: ' + status);
-        });
+            });
 
-        $scope.save = function() {
+        $scope.save = function () {
             $log.info('Date: ' + expenseItem.dateTime);
             $log.info('Saving expense');
 
             // Submit request to server
-            $http.put('/api/expense/' + expenseId, expenseItem).success(function(data, status) {
+            //noinspection JSHint,JSHint
+            $http.put('/api/expense/' + expenseId, expenseItem).success(function (data, status) {
                 $log.info('Edit expense success!');
 
                 // Add message via flashMessage for display
@@ -48,18 +50,18 @@ angular.module('myExpenseKeeperApp')
 
                 // Redirect to view page
                 $location.path('/expenseview/' + expenseId);
-            }).error(function(data, status) {
+            }).error(function (data, status) {
                     $log.info('Save expense fail: ' + status);
-            });
-        }
+                });
+        };
 
-        $scope.cancel = function() {
+        $scope.cancel = function () {
             window.history.back();
-        }
+        };
 
-        $scope.clearRating = function() {
+        $scope.clearRating = function () {
             expenseItem.rating = 0;
-        }
+        };
 
         $scope.addCategory = function(category) {
             var d = $dialog.dialog({dialogFade: true, resolve: {category: function(){ return angular.copy(category); }} });
@@ -73,4 +75,4 @@ angular.module('myExpenseKeeperApp')
                 });
         };
 
-  });
+    });

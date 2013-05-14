@@ -5,11 +5,6 @@
  * Time: 13:38
  */
 
-//var expenses = [
-//    {userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Eat', amount: 300},
-//    {userId: 'ho.clarence@gmail.com', dateTime: new Date(), location: 'Diamond Hill', category: 'Cloth', amount: 650}
-//];
-
 var env = process.env.NODE_ENV || 'development';
 
 var dbHost = '';
@@ -24,7 +19,7 @@ if ('development' == env) {
 } else if ('production' == env) {
     dbHost = 'dharma.mongohq.com';
     dbPort = 10036;
-};
+}
 
 var bcrypt = require('dojo-bcrypt')
     , mongodb = require('mongodb')
@@ -115,7 +110,7 @@ function expenseAdd(req, res, next) {
         {safe: true},
         function(err, documents) {
             if (err) throw err;
-            console.log('Expense id is: ' + documents[0]._id)
+            console.log('Expense id is: ' + documents[0]._id);
             res.send(documents[0]);
         }
     );
@@ -222,7 +217,7 @@ function userGet(req, res, next) {
     }
     console.log('Getting user with id: ' + userId);
 
-    // Return the user document (exclusde password)
+    // Return the user document (exclude password)
     users.findOne({_id: userId}, {password: 0},
         function(err, document) {
             if (err) throw err;
@@ -235,7 +230,7 @@ function userGet(req, res, next) {
 
 function findUserById(userId, callback) {
 
-    // Return the user document (exclusde password)
+    // Return the user document (exclude password)
     users.findOne({_id: userId},
         function(err, document) {
             if (err) throw err;
@@ -270,7 +265,7 @@ function userAdd(req, res, next) {
             if (err) {
                 console.log('Error in adding user to DB: ' + err);
                 res.send(500);
-            };
+            }
             console.log('User: ' + newUser.username + ' registered successfully');
 
             // Login user
@@ -334,7 +329,7 @@ function checkUserId(req, res, next) {
 
     console.log('Checking existing user with id: ' + userId);
 
-    // Return the user document (exclusde password)
+    // Return the user document (exclude password)
     users.findOne({_id: userId}, {password: 0},
         function(err, document) {
             if (err) throw err;
@@ -372,7 +367,7 @@ function expenseReport(req, res, next) {
         if (err) {
             console.log('Error in adding user to DB: ' + err);
             res.send(500);
-        };
+        }
 
         console.log('Expense report data retrieved successfully');
         res.send(result);

@@ -8,12 +8,13 @@ angular.module('myExpenseKeeperApp')
         $scope.actionFailed = false;
 
         // Login
-        $scope.login = function() {
-            console.log("Username: " + $scope.user.username + " password: " + $scope.user.password);
+        $scope.login = function () {
+            console.log('Username: ' + $scope.user.username + ' password: ' + $scope.user.password);
 
             // Login user with server
-            $http.post('/login/', $scope.user).success(function(data, status) {
-                console.log("Login result: " + data);
+            //noinspection JSHint
+            $http.post('/login/', $scope.user).success(function (data, status) {
+                console.log('Login result: ' + data);
                 userService.saveUserInfo($scope.user.username);
                 //dialog.close();
 
@@ -22,18 +23,19 @@ angular.module('myExpenseKeeperApp')
                 $scope.$emit('userLoggedIn');
 
                 $location.path('/');
-            }).error(function(data, status) {
-                console.log('Login failed: ' + status);
-                $scope.actionFailed = true;
-            });
-        }
+            }).error(function (data, status) {
+                    console.log('Login failed: ' + status);
+                    $scope.actionFailed = true;
+                });
+        };
 
         $scope.close = function() {
             //dialog.close();
         };
 
-        $scope.cancel = function() {
+        $scope.cancel = function() //noinspection JSHint
+        {
             $location.path('/');
-        }
+        };
 
-  });
+    });
