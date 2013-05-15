@@ -10,13 +10,13 @@ describe('Service: flashMessage', function () {
     });
 
     // instantiate service
-    var flashMessage;
-    beforeEach(inject(function (_flashmessage_) {
-        flashMessage = _flashmessage_;
+    var flashMessageService;
+    beforeEach(inject(function (flashMessage) {
+        flashMessageService = flashMessage;
     }));
 
     it('should do something', function () {
-        expect(!!flashMessage).toBe(true);
+        expect(!!flashMessageService).toBe(true);
     });
 
 });

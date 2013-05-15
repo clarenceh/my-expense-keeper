@@ -8,15 +8,24 @@ describe('Controller: UserCtrl', function () {
     var UserCtrl,
         scope;
 
+    var dialog = {
+        close: function() {
+        }
+    }
+
+    var category = 'dummyCategory';
+
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         UserCtrl = $controller('UserCtrl', {
-            $scope: scope
+            $scope: scope,
+            dialog: dialog,
+            category: category
         });
     }));
 
-    it('should attach a list of awesomeThings to the scope', function () {
-        expect(scope.awesomeThings.length).toBe(3);
+    it('should instantiate an UserCtrl', function() {
+        expect(!!UserCtrl).toBe(true);
     });
 });

@@ -16,7 +16,8 @@ describe('Controller: ExpenserptCtrl', function () {
         });
     }));
 
-    it('should attach a list of awesomeThings to the scope', function () {
-        expect(scope.awesomeThings.length).toBe(3);
+    it('should instantiate an ExpenserptCtrl', function() {
+        expect(!!ExpenserptCtrl).toBe(true);
     });
+
 });
