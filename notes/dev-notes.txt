@@ -40,6 +40,8 @@ Todo:
   - implement forgot password feature
 - List/View screen
   - when retrieving data, should a loading indicator on the screen
+- Home page
+  - display username instead of email address
 - Add splash screen
 - Try to submit to App Store
 - iOS
