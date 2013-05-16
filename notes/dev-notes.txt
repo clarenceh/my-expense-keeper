@@ -38,6 +38,8 @@ Todo:
   - select language (hard code to Eng at the moment)
 - Login
   - implement forgot password feature
+- List/View screen
+  - when retrieving data, should a loading indicator on the screen
 - Add splash screen
 - Try to submit to App Store
 - iOS
