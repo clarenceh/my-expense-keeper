@@ -3,8 +3,6 @@
 angular.module('myExpenseKeeperApp')
   .controller('SecurityCtrl', function ($scope, $log, $http, $location, userService) {
 
-        //$scope.user = user;
-
         $scope.actionFailed = false;
 
         // Login
@@ -15,14 +13,16 @@ angular.module('myExpenseKeeperApp')
             //noinspection JSHint
             $http.post('/login/', $scope.user).success(function (data, status) {
                 console.log('Login result: ' + data);
-                userService.saveUserInfo($scope.user.username);
-                //dialog.close();
+                userService.findUserById($scope.user.username, function(user) {
+                    console.log('Logged in user: ' + angular.toJson(user));
+                    userService.saveUserInfo($scope.user.username, user.userName);
 
-                $scope.loggedInUser = userService.isLoggedIn();
-                $scope.isLoggedIn = !!$scope.loggedInUser;
-                $scope.$emit('userLoggedIn');
+                    $scope.loggedInUser = userService.isLoggedIn();
+                    $scope.isLoggedIn = !!$scope.loggedInUser;
+                    $scope.$emit('userLoggedIn');
 
-                $location.path('/');
+                    $location.path('/');
+                });
             }).error(function (data, status) {
                     console.log('Login failed: ' + status);
                     $scope.actionFailed = true;

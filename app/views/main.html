@@ -12,6 +12,8 @@
             </div>
         </div>-->
 
+        <div class="alert" ng-show="flash.get().text.length">{{flash.get().text}}</div>
+
         <a href="" class="btn btn-large btn-block btn-primary" ng-click="list()" ng-show="isLoggedIn">List Expense</a>
 
         <a href="" class="btn btn-large btn-block btn-info" ng-click="add()" ng-show="isLoggedIn">Add Expense</a>
@@ -31,7 +33,7 @@
         </div>
 
         <div ng-show="isLoggedIn">
-            <h4 class="text-center">Welcome {{loggedInUser}}</h4>
+            <h4 class="text-center">Welcome {{displayUser}}</h4>
         </div>
     </div>
 </div>

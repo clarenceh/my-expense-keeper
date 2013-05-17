@@ -4,24 +4,38 @@ angular.module('myExpenseKeeperApp')
     .factory('userService', function ($http, $log) {
         var sessionStorageAvailable = ('sessionStorage' in window);
         return {
-            findUserById: function (userId) {
+            findUserById: function (userId, callback) {
                 //var user = {_id: 'ho.clarence@gmail.com', categories:['Eat', 'Cloth', 'Sport', 'Book']};
                 $http.get('/api/user/' + userId).success(function (user) {
-                    $log.info('Response user data: ' + user);
-                    return user;
+                    $log.info('Response user data: ' + angular.toJson(user));
+                    callback(user);
                 });
             },
-            saveUserInfo: function (userId) {
+            saveUser: function(updatedUser, callback) {
+                $http.post('/api/user/' + updatedUser._id, updatedUser).success(function() {
+                    $log.info('User saved successfully');
+                    callback(true);  // return with success result
+                });
+            },
+            saveUserInfo: function (userId, userName) {
                 // Store the user name in session storage
                 if (sessionStorageAvailable) {
                     console.log('Session storage available');
                     sessionStorage.username = userId;
+                    sessionStorage.displayName = userName;
                     $log.info('User info saved to session storage');
                 }
             },
             isLoggedIn: function () {
                 if (sessionStorageAvailable) {
                     return sessionStorage.username;
+                } else {
+                    return null;
+                }
+            },
+            getDisplayUser: function() {
+                if (sessionStorageAvailable) {
+                    return sessionStorage.displayName;
                 } else {
                     return null;
                 }
@@ -33,6 +47,7 @@ angular.module('myExpenseKeeperApp')
                     // Clear session storage
                     if (sessionStorageAvailable) {
                         sessionStorage.removeItem('username');
+                        sessionStorage.removeItem('displayName');
                     }
                     callback();
                 });

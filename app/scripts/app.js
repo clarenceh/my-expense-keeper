@@ -35,6 +35,10 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
                 templateUrl: 'views/registerform.html',
                 controller: 'RegisterCtrl'
             })
+            .when('/settingform', {
+                templateUrl: 'views/settingform.html',
+                controller: 'SettingCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

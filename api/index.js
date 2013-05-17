@@ -273,7 +273,8 @@ function userAdd(req, res, next) {
     var user = {
         _id: newUser.username,
         password: hashPassword,
-        userName: newUser.name
+        userName: newUser.name,
+        language: newUser.language
     };
 
     // Add user to DB
@@ -304,6 +305,60 @@ function userAdd(req, res, next) {
         }
     );
 
+}
+
+function userSave(req, res, next) {
+
+    if (!req.user) {
+        res.send(401);
+    }
+
+    // Retrieve the id
+    var userId = req.params.id;
+    if (userId !== req.user.id) {
+        res.send(401);
+    }
+    console.log('Getting user with id: ' + userId);
+
+    var updateUser = req.body;
+    var passwordUpdated = false;
+
+    // Hash the password and save (if password was changed)
+    if (!!updateUser.password && updateUser.password.length > 0) {
+        var salt = bcrypt.genSaltSync(10);
+        var hashPassword = bcrypt.hashSync(updateUser.password, salt);
+        updateUser.password = hashPassword;
+        passwordUpdated = true;
+    }
+
+    // Update password
+    if (passwordUpdated) {
+        users.update(
+            {_id: userId},
+            {$set: {password: updateUser.password}},
+            {safe: true},
+            function(err, document) {
+                if (err) {
+                    throw err;
+                }
+                console.log('User password updated successfully');
+            }
+        );
+    }
+
+    // Update user to DB
+    users.update(
+        {_id: userId},
+        {$set: {userName: updateUser.userName, language: updateUser.language}},
+        {safe: true},
+        function(err, document) {
+            if (err) {
+                throw err;
+            }
+            console.log('User info saved successfully');
+            res.send(200);
+        }
+    );
 }
 
 function validPassword(userPassword, submittedPassword) {
@@ -407,6 +462,7 @@ exports.expenseRemove = expenseRemove;
 exports.userGet = userGet;
 exports.findUserById = findUserById;
 exports.userAdd = userAdd;
+exports.userSave = userSave;
 exports.validPassword = validPassword;
 exports.addCategoryForUser = addCategoryForUser;
 exports.checkUserId = checkUserId;

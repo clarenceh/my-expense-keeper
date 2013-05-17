@@ -20,6 +20,9 @@ List all user ids:
 Update rating to zero for all expense records:
 - db.expense.update({}, {$set: {rating: 0}}, {multi: true})
 
+Update default language for all user records:
+- db.user.update({}, {$set: {language: 'en_US'}}, {multi: true})
+
 Aggregation
 -----------
 

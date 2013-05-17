@@ -1,10 +1,16 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('MainCtrl', function ($scope, $dialog, $location, $window, userService) {
+  .controller('MainCtrl', function ($scope, $dialog, $location, $window, userService, flashMessage) {
 
     $scope.loggedInUser = userService.isLoggedIn();
     $scope.isLoggedIn = !!$scope.loggedInUser;
+
+    if ($scope.isLoggedIn) {
+        $scope.displayUser = userService.getDisplayUser();
+    }
+
+    $scope.flash = flashMessage;
 
     $scope.list = function () {
         $location.path('/expenselist');
@@ -19,8 +25,7 @@ angular.module('myExpenseKeeperApp')
     };
 
     $scope.setting = function () {
-        // TODO - implement settings view
-        $location.path('/');
+        $location.path('/settingform');
     };
 
     $scope.signIn = function () {

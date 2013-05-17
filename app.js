@@ -4,27 +4,28 @@
  * Date: 2013/04/19
  * Time: 11:23
  */
+'use strict';
 
-var express = require('express')
-    , http = require('http')
-    , path = require('path')
-    , passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy
-    , api = require('./api');
+var express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    api = require('./api');
 
 var env = process.env.NODE_ENV || 'development';
 
 // Set server port
 var port = 0;
-if ('development' == env) {
+if ('development' === env) {
     port = 3000;
-} else if ('production' == env) {
+} else if ('production' === env) {
     port = 8080;
 }
 var app = express();
 
 function findById(id, fn) {
-    console.log("User id: " + id);
+    console.log('User id: ' + id);
     //var user = {id: 'ho.clarence@gmail.com', username: 'ho.clarence@gmail.com', password: 'maxell'};
 
     api.findUserById(id, function(user) {
@@ -33,7 +34,7 @@ function findById(id, fn) {
         } else {
             fn(new Error('User ' + id + ' does not exist'));
         }
-    })
+    });
 
 }
 
@@ -49,8 +50,7 @@ passport.deserializeUser(function(id, done) {
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        console.log("Authentication user with local strategy, username: " + username + ' password: ' + password);
-        //var user = {id: 'ho.clarence@gmail.com', username: 'ho.clarence@gmail.com'};
+        console.log('Authentication user with local strategy, username: ' + username + ' password: ' + password);
 
         api.findUserById(username, function(user) {
 
@@ -66,15 +66,15 @@ passport.use(new LocalStrategy(
             }
 
             // User found and password match
-            console.log("User found");
+            console.log('User found');
             return done(null, {id: user._id, username: user._id});
-        })
+        });
 
     })
 );
 
 function login(req, res, next) {
-    console.log("Start authenticate user");
+    console.log('Start authenticate user');
 
     passport.authenticate('local', function(err, user, info) {
         if (err) {
@@ -107,6 +107,7 @@ app.configure(function(){
     app.delete('/api/expense/:id', api.expenseRemove);
     app.post('/api/expenserpt', api.expenseReport);
     app.get('/api/user/:id', api.userGet);
+    app.post('/api/user/:id', api.userSave);
     app.post('/api/category', api.addCategoryForUser);
     app.get('/checkuser/:id', api.checkUserId);
     app.post('/login', function(req, res, next) {
@@ -118,7 +119,7 @@ app.configure(function(){
                 return res.send(401);
             }
             req.logIn(user, function(err) {
-                console.log("Logging in user: " + user.username);
+                console.log('Logging in user: ' + user.username);
                 if (err) { return next(err); }
                 res.send(200);
             });
@@ -134,11 +135,11 @@ app.configure(function(){
     app.use(express.static(path.join(__dirname, 'app')));
 });
 
-if ('development' == env) {
+if ('development' === env) {
     app.use(express.errorHandler());
 }
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Current environment: ' + env);
-    console.log("Express server listening on port " + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
