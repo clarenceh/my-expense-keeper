@@ -4,6 +4,7 @@
  * Date: 2013/04/12
  * Time: 13:38
  */
+'use strict';
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -13,29 +14,31 @@ var dbUserName = process.env.DB_USER_NAME || '';
 var dbPassword = process.env.DB_PASSWORD || '';
 
 // Configure DB server for diff. envs
-if ('development' == env) {
+if ('development' === env) {
     dbHost = '127.0.0.1';
     dbPort = 27017;
-} else if ('production' == env) {
+} else if ('production' === env) {
     dbHost = 'dharma.mongohq.com';
     dbPort = 10036;
 }
 
-var bcrypt = require('dojo-bcrypt')
-    , mongodb = require('mongodb')
-    , passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy
-    , server = new mongodb.Server(dbHost, dbPort, {});
+var bcrypt = require('dojo-bcrypt'),
+    mongodb = require('mongodb'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    server = new mongodb.Server(dbHost, dbPort, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
 var users;
 
 //Open a MongoDB connection
 client.open(function(err) {
-    if (err) throw err;
+    if (err) {
+        throw err;
+    }
 
     // If production, login to DB
-    if ('production' == env) {
+    if ('production' === env) {
         client.authenticate(dbUserName, dbPassword, function authenticate(err, replies) {
             if (err) {
                 throw err;
@@ -46,12 +49,16 @@ client.open(function(err) {
     }
 
     client.collection('expense', function(err, collection) {
-        if (err) throw err;
+        if (err) {
+            throw err;
+        }
         console.log('We are now able to perform queries on expenses.');
         expenses = collection;
     });
     client.collection('user', function(err, collection) {
-        if (err) throw err;
+        if (err) {
+            throw err;
+        }
         console.log('We are now able to perform queries on users.');
         users = collection;
     });
@@ -80,11 +87,11 @@ function expenseList(req, res, next) {
 
     switch (req.method) {
 
-        case 'GET':
-            expenses.find({userId: userId, dateTime: {$gte: fromDate, $lte: toDate}}).toArray(function(err, results) {
+    case 'GET':
+        expenses.find({userId: userId, dateTime: {$gte: fromDate, $lte: toDate}}).toArray(function(err, results) {
                 res.send(results);
             });
-            break;
+        break;
 
     }
 
@@ -96,7 +103,7 @@ function expenseAdd(req, res, next) {
         res.send(401);
     }
 
-    console.log("Adding expense");
+    console.log('Adding expense');
 
     console.log('Body: ' + req.body);
 
@@ -109,7 +116,9 @@ function expenseAdd(req, res, next) {
         expenseItem,
         {safe: true},
         function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('Expense id is: ' + documents[0]._id);
             res.send(documents[0]);
         }
@@ -135,7 +144,9 @@ function expenseGet(req, res, next) {
     console.log('Object id: ' + _id);
     expenses.findOne({_id: _id},
         function(err, document) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('Retrieved document: ' + document);
             res.send(document);
         }
@@ -149,7 +160,7 @@ function expenseSave(req, res, next) {
         res.send(401);
     }
 
-    console.log("Saving expense");
+    console.log('Saving expense');
 
     console.log('Body: ' + req.body);
 
@@ -170,8 +181,10 @@ function expenseSave(req, res, next) {
         expenseItem,
         {safe: true},
         function(err, document) {
-            if (err) throw err;
-            console.log("Expense saved successfully");
+            if (err) {
+                throw err;
+            }
+            console.log('Expense saved successfully');
             //console.log(document);
             res.send(200);
         }
@@ -196,8 +209,10 @@ function expenseRemove(req, res, next) {
         {_id: _id},
         {safe: true},
         function(err, noOfDocsDeleted) {
-            if (err) throw err;
-            console.log("Removed documents: " + noOfDocsDeleted);
+            if (err) {
+                throw err;
+            }
+            console.log('Removed documents: ' + noOfDocsDeleted);
             res.send(200);
         }
     );
@@ -220,7 +235,9 @@ function userGet(req, res, next) {
     // Return the user document (exclude password)
     users.findOne({_id: userId}, {password: 0},
         function(err, document) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('Retrieved user: ' + document);
             res.send(document);
         }
@@ -233,7 +250,9 @@ function findUserById(userId, callback) {
     // Return the user document (exclude password)
     users.findOne({_id: userId},
         function(err, document) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             //console.log('Retrieved user: ' + document);
             callback(document);
         }
@@ -269,7 +288,7 @@ function userAdd(req, res, next) {
             console.log('User: ' + newUser.username + ' registered successfully');
 
             // Login user
-            console.log("Logging in user: " + newUser.username);
+            console.log('Logging in user: ' + newUser.username);
             passport.authenticate('local', function(err, user, info) {
                 if (err) {
                     return next(err);
@@ -314,7 +333,9 @@ function addCategoryForUser(req, res, next) {
         {$addToSet: {categories: category.category}},
         {safe: true},
         function(err, document) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('Category saved successfully');
             res.send(200);
         }
@@ -332,7 +353,9 @@ function checkUserId(req, res, next) {
     // Return the user document (exclude password)
     users.findOne({_id: userId}, {password: 0},
         function(err, document) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('User id exist ' + document);
             if (!!document) {
                 res.send(404);
