@@ -26,7 +26,6 @@ var app = express();
 
 function findById(id, fn) {
     console.log('User id: ' + id);
-    //var user = {id: 'ho.clarence@gmail.com', username: 'ho.clarence@gmail.com', password: 'maxell'};
 
     api.findUserById(id, function(user) {
         if (user) {
@@ -110,6 +109,9 @@ app.configure(function(){
     app.post('/api/user/:id', api.userSave);
     app.post('/api/category', api.addCategoryForUser);
     app.get('/checkuser/:id', api.checkUserId);
+    app.get('/forgotpassword/:id', api.forgotPassword);
+    app.get('/resetpasswordrequest/:id', api.resetPasswordRequest);
+    app.post('/resetpassword', api.resetPassword);
     app.post('/login', function(req, res, next) {
         passport.authenticate('local', function(err, user, info) {
             if (err) {

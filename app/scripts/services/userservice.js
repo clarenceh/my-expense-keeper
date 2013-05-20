@@ -5,7 +5,6 @@ angular.module('myExpenseKeeperApp')
         var sessionStorageAvailable = ('sessionStorage' in window);
         return {
             findUserById: function (userId, callback) {
-                //var user = {_id: 'ho.clarence@gmail.com', categories:['Eat', 'Cloth', 'Sport', 'Book']};
                 $http.get('/api/user/' + userId).success(function (user) {
                     $log.info('Response user data: ' + angular.toJson(user));
                     callback(user);

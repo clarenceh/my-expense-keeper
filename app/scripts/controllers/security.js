@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-  .controller('SecurityCtrl', function ($scope, $log, $http, $location, userService) {
+  .controller('SecurityCtrl', function ($scope, $log, $http, $location, userService, flashMessage) {
 
+        $scope.flash = flashMessage;
         $scope.actionFailed = false;
 
         // Login
@@ -27,6 +28,10 @@ angular.module('myExpenseKeeperApp')
                     console.log('Login failed: ' + status);
                     $scope.actionFailed = true;
                 });
+        };
+
+        $scope.forgotPassword = function() {
+            $location.path('/forgotpasswordform');
         };
 
         $scope.close = function() {

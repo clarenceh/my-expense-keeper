@@ -32,8 +32,6 @@ Generate a top nav view controller
 
 
 Todo:
-- Login
-  - implement forgot password feature
 - List/View screen
   - when retrieving data, should a loading indicator on the screen
 - Add splash screen

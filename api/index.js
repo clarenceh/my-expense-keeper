@@ -12,6 +12,10 @@ var dbHost = '';
 var dbPort = 0;
 var dbUserName = process.env.DB_USER_NAME || '';
 var dbPassword = process.env.DB_PASSWORD || '';
+var mailService = 'Gmail';
+var mailServiceUser = process.env.MAIL_SERVICE_USER || '';
+var mailServicePassword = process.env.MAIL_SERVICE_PASSWORD || '';
+var baseURL = process.env.NODEJS_SERVER_BASE_URL || 'http://localhost:3000/#';
 
 // Configure DB server for diff. envs
 if ('development' === env) {
@@ -25,11 +29,15 @@ if ('development' === env) {
 var bcrypt = require('dojo-bcrypt'),
     mongodb = require('mongodb'),
     passport = require('passport'),
+    nodemailer = require('nodemailer'),
+    uuid = require('node-uuid'),
+    url = require('url'),
     LocalStrategy = require('passport-local').Strategy,
     server = new mongodb.Server(dbHost, dbPort, {});
 var client = new mongodb.Db('myexpensekeeper', server);
 var expenses;
 var users;
+var passwordResets;
 
 //Open a MongoDB connection
 client.open(function(err) {
@@ -62,6 +70,22 @@ client.open(function(err) {
         console.log('We are now able to perform queries on users.');
         users = collection;
     });
+    client.collection('password_reset', function(err, collection) {
+        if (err) {
+            throw err;
+        }
+        console.log('We are now able to perform queries on password_reset.');
+        passwordResets = collection;
+    });
+});
+
+// create reusable transport method (opens pool of SMTP connections)
+var smtpTransport = nodemailer.createTransport('SMTP',{
+    service: mailService,
+    auth: {
+        user: mailServiceUser,
+        pass: mailServicePassword
+    }
 });
 
 function expenseList(req, res, next) {
@@ -454,6 +478,116 @@ function expenseReport(req, res, next) {
 
 }
 
+function forgotPassword(req, res, next) {
+
+    // Retrieve the id
+    var userId = req.params.id;
+
+    console.log('Forgot password processing for user id: ' + userId);
+
+    // Generate a uuid for reset password link
+    var token = uuid.v4();
+    var resetToken = token.replace(/\-/g, ''); // trim all "-" characters in the generated uuid
+
+    console.log('Generated token: ' + resetToken);
+
+    // Construct the password reset url
+    var resetUrl = baseURL + '/passwordresetform/' + resetToken;
+
+    // setup e-mail data
+    var mailOptions = {
+        from: 'My Expense Keeper<no-reply@skywidesoft.com>', // sender
+        to: userId, // receiver
+        subject: 'Password reset', // Subject line
+        html: '<b>Please click the below link to reset your password:</b><br>' + resetUrl // html body
+    };
+
+    // Send email
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Message sent: ' + response.message);
+
+            // Save the request into DB
+            var passwordReset = {
+                _id: resetToken,
+                userId: userId,
+                requestDate: new Date()
+            };
+
+            passwordResets.insert(
+                passwordReset,
+                {safe: true},
+                function(err, documents) {
+                    if (err) {
+                        console.log('Error in adding password reset to DB: ' + err);
+                        res.send(500);
+                    }
+                    res.send(200);
+                }
+            );
+
+        }
+
+        // if you don't want to use this transport object anymore, uncomment following line
+        //smtpTransport.close(); // shut down the connection pool, no more messages
+    });
+}
+
+function resetPassword(req, res, next) {
+
+    var passwordResetRequest = req.body;
+
+    console.log('Reset password for user: ' + passwordResetRequest.userId);
+
+    var salt = bcrypt.genSaltSync(10);
+    var hashPassword = bcrypt.hashSync(passwordResetRequest.password, salt);
+
+    // Update user
+    users.update(
+        {_id: passwordResetRequest.userId},
+        {$set: {password: hashPassword}},
+        {safe: true},
+        function(err, document) {
+            if (err) {
+                console.log('Error saving user password');
+                res.send(500);
+            }
+            console.log('User password resetted successfully');
+            res.send(200);
+        }
+    );
+
+}
+
+function resetPasswordRequest(req, res, next) {
+
+    // Retrieve the id
+    var id = req.params.id;
+
+    console.log('Retrieve password reset request for id: ' + id);
+
+    // Return the reset request document
+    // A request should have a valid id and within 7 days
+    var fromDate = new Date();
+    fromDate = fromDate.setDate(fromDate.getDate() - 7);
+    fromDate = new Date(fromDate);
+
+    passwordResets.findOne({_id: id, requestDate: {$gt: fromDate}},
+        function(err, document) {
+            if (err) {
+                console.log('Error retrieving password reset request');
+                res.send(500);
+            }
+            res.send(document);
+        }
+    );
+
+}
+
+
 exports.expenseList = expenseList;
 exports.expenseAdd = expenseAdd;
 exports.expenseGet = expenseGet;
@@ -467,3 +601,6 @@ exports.validPassword = validPassword;
 exports.addCategoryForUser = addCategoryForUser;
 exports.checkUserId = checkUserId;
 exports.expenseReport = expenseReport;
+exports.forgotPassword = forgotPassword;
+exports.resetPassword = resetPassword;
+exports.resetPasswordRequest = resetPasswordRequest;

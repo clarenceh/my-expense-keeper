@@ -39,6 +39,14 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
                 templateUrl: 'views/settingform.html',
                 controller: 'SettingCtrl'
             })
+            .when('/forgotpasswordform', {
+                templateUrl: 'views/forgotpassword.html',
+                controller: 'ForgotpasswordCtrl'
+            })
+            .when('/passwordresetform/:id', {
+                templateUrl: 'views/passwordreset.html',
+                controller: 'PasswordresetCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

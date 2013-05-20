@@ -1,3 +1,4 @@
+<div class="alert" ng-show="flash.get().text.length">{{flash.get().text}}</div>
 <p><h4 class="text-center">Login</h4></p>
 
 <form name="loginForm" class="form-horizontal">
@@ -20,6 +21,11 @@
         <div class="controls">
             <button class="btn btn-primary" ng-click="login()" ng-disabled="loginForm.$invalid">Sign in</button>
             <button type="button" class="btn" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="button" class="btn btn-warning" ng-click="forgotPassword()">Forgot Password</button>
         </div>
     </div>
 </form>
