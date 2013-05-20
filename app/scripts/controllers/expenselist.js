@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myExpenseKeeperApp')
-    .controller('ExpenselistCtrl', function ($scope, $http, $log, flashMessage) {
+    .controller('ExpenselistCtrl', function ($scope, $http, $log, $location, flashMessage) {
 
         $scope.flash = flashMessage;
 
@@ -19,5 +19,10 @@ angular.module('myExpenseKeeperApp')
                 $scope.expenses = data;
             });
         });
+
+        $scope.view = function(id) {
+            $log.info('Expense id:  ' + id + ' was clicked');
+            $location.path('/expenseview/' + id);
+        };
 
     });

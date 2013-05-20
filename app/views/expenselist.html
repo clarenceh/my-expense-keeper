@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<table class="table table-hover table-condensed">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <td><strong>Date</strong></td>
@@ -28,8 +28,8 @@
             <td><strong>Amount</strong></td>
         </tr>
     </thead>
-    <tr ng-repeat="expense in expenses | filter: searchText | orderBy:'dateTime':true ">
-        <td><a href="#/expenseview/{{expense._id}}">{{expense.dateTime | date:'yyyy-MM-dd'}}</a></td>
+    <tr ng-repeat="expense in expenses | filter: searchText | orderBy:'dateTime':true " ng-click="view(expense._id)" >
+        <td>{{expense.dateTime | date:'yyyy-MM-dd'}}</td>
         <td>{{expense.location}}</td>
         <td>{{expense.category}}</td>
         <td>{{expense.amount | currency}}</td>
