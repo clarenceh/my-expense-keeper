@@ -32,6 +32,7 @@ var bcrypt = require('dojo-bcrypt'),
     nodemailer = require('nodemailer'),
     uuid = require('node-uuid'),
     url = require('url'),
+    util = require('util'),
     LocalStrategy = require('passport-local').Strategy,
     server = new mongodb.Server(dbHost, dbPort, {});
 var client = new mongodb.Db('myexpensekeeper', server);
@@ -492,7 +493,9 @@ function forgotPassword(req, res, next) {
     console.log('Generated token: ' + resetToken);
 
     // Construct the password reset url
-    var resetUrl = baseURL + '/passwordresetform/' + resetToken;
+    //var resetUrl = baseURL + '/passwordresetform/' + resetToken;
+    var resetUrl = req.headers.referer + '#/passwordresetform/' + resetToken;
+    console.log('Link for request url: ' + resetUrl);
 
     // setup e-mail data
     var mailOptions = {
