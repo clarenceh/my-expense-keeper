@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
+var myExpenseKeeper = angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -50,4 +50,24 @@ angular.module('myExpenseKeeperApp', ['ui', 'ui.bootstrap'])
             .otherwise({
                 redirectTo: '/'
             });
+    });
+
+// Register HTTP response interceptor
+myExpenseKeeper.config(function ($httpProvider) {
+        $httpProvider.responseInterceptors.push('myHttpInterceptor');
+    })
+    .factory('myHttpInterceptor', function ($q, $window, $rootScope, $log) {
+        return function (promise) {
+            //$log.info('Start waiting ajax response');
+            $rootScope.polling = true;
+            return promise.then(function (response) {
+                //$log.info('Finish waiting ajax response');
+                $rootScope.polling = false;
+                return response;
+            }, function (response) {
+                $rootScope.polling = false;
+                $rootScope.networkError = true;
+                return $q.reject(response);
+            });
+        };
     });
