@@ -32,12 +32,8 @@ Generate a top nav view controller
 
 
 Todo:
-- Android
-  - Add splash screen
-  - Try to submit to Google Play
 - iOS App
   - Add splash screen
-  - Test and add support for iPhone 4S
   - Try to submit to App Store
 - iOS
   - study the problem on iPhone that after add an expense, the page was en-larged and require re-size to see the whole page
