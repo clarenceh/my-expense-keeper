@@ -26,7 +26,7 @@ if ('development' === env) {
     dbPort = 10096;
 }
 
-var bcrypt = require('dojo-bcrypt'),
+var bcrypt = require('bcryptjs'),
     mongodb = require('mongodb'),
     passport = require('passport'),
     nodemailer = require('nodemailer'),

@@ -46,7 +46,7 @@
                             <li ng-class="{active:locationList()}"><a href="#/expenselist" ng-show="isLoggedIn">List</a></li>
                             <li ng-class="{active:locationAdd()}"><a href="#/expenseadd" ng-show="isLoggedIn">Add</a></li>
                             <li ng-class="{active:locationReport()}"><a href="#/expenserpt" ng-show="isLoggedIn">Report</a></li>
-                            <li><a href="" data-toggle="modal" data-target="#modal-settings-form" ng-show="isLoggedIn">Settings</a></li>
+                            <li ng-class="{active:locationSetting()}"><a href="#/settingform" ng-show="isLoggedIn">Settings</a></li>
                         </ul>
                     </div>
                 </div>

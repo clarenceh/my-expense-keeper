@@ -45,4 +45,8 @@ angular.module('myExpenseKeeperApp')
     $scope.locationReport = function() {
         return ($location.path() === '/expenserpt');
     };
+
+    $scope.locationSetting = function() {
+        return ($location.path() === '/settingform');
+    };
 });
