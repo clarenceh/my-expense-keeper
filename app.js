@@ -20,7 +20,7 @@ var port = 0;
 if ('development' === env) {
     port = 3000;
 } else if ('production' === env) {
-    port = 8080;
+    port = 3000;
 }
 var app = express();
 

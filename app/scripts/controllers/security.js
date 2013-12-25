@@ -8,6 +8,9 @@ angular.module('myExpenseKeeperApp')
 
         // Login
         $scope.login = function () {
+
+            $scope.$broadcast('autofill:update');
+
             console.log('Username: ' + $scope.user.username + ' password: ' + $scope.user.password);
 
             // Login user with server

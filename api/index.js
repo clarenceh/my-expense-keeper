@@ -22,8 +22,10 @@ if ('development' === env) {
     dbHost = '127.0.0.1';
     dbPort = 27017;
 } else if ('production' === env) {
-    dbHost = 'dawson.mongohq.com';
-    dbPort = 10096;
+    //dbHost = 'dawson.mongohq.com';
+    //dbPort = 10096;
+    dbHost = '127.0.0.1';
+    dbPort = 27017;
 }
 
 var bcrypt = require('bcryptjs'),
